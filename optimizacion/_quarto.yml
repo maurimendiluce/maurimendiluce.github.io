@@ -19,7 +19,6 @@ book:
     - part: "Repaso"
       chapters: 
         - clase_1.qmd 
-    - summary.qmd
     - references.qmd
 
 bibliography: references.bib

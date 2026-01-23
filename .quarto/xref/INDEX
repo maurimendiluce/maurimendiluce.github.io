@@ -13,5 +13,26 @@
   },
   "teaching.qmd": {
     "teaching.html": "26a1923a"
+  },
+  "optimizacion/clase_1.qmd": {
+    "clase_1.html": "563b578b"
+  },
+  "optimizacion/index.qmd": {
+    "index.html": "c1ea18e7"
+  },
+  "optimizacion/intro.qmd": {
+    "intro.html": "7c9a8228"
+  },
+  "optimizacion/intro_julia.qmd": {
+    "intro_julia.html": "8c5bd509"
+  },
+  "optimizacion/references.qmd": {
+    "references.html": "f7923f31"
+  },
+  "optimizacion/repaso.qmd": {
+    "repaso.html": "5835a32d"
+  },
+  "optimizacion/summary.qmd": {
+    "summary.html": "736e487d"
   }
 }
