@@ -1,20 +1,11 @@
-name: Publish Quarto website
+name: Test Quarto Actions
 
 on:
-  push:
-    branches: [main, master]
   workflow_dispatch:
 
 jobs:
-  build-deploy:
+  test:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - uses: actions/checkout@v4
+      - run: echo "GitHub Actions funciona"
 
-      - uses: quarto-dev/quarto-actions/setup@v2
-
-      - uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
