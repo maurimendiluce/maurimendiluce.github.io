@@ -1,0 +1,23 @@
+---
+title: "Mauricio Mendiluce"
+image: image.jpg
+about:
+  template: trestles
+  links: 
+    - text: "Email"
+      url: "mailto:mmendiluce@dm.uba.ar"
+    - text: GitHub
+      icon: github
+      url: "https://github.com/maurimendiluce"
+    - text: LinkedIn
+      icon: linkedin
+      url: "https://www.linkedin.com/in/mauricio-mendiluce-7437ba1a9/"
+---
+
+# PhD Student
+
+Departamento de Matemática, Facultad de Ciencias Exactas y Naturales, Universidad de Buenos Aires
+
+IMAS - CONICET 
+
+[Research Group on Numerical Methods for PDEs and Related Analysis Topics](https://mate.dm.uba.ar/~numerical_analysis/index.html)

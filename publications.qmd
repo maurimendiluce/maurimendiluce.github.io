@@ -1,0 +1,12 @@
+---
+title: "Publications"
+---
+
+### Articles 
+
+- María Gabriela Armentano, Andrea Ceretani, Mauricio Mendiluce and Sebastián Oriolo, *Indoor radon concentration: Mathematical model and numerical simulation.*, MACI. Vol 10,588-591 (2025). [Link](https://drive.google.com/file/d/1h_ZoH3l_Xi-8XBHfPOwQ7ZQ3m3hv6xFX/view)
+- María Gabriela Armentano and Mauricio Mendiluce, *Finite element approximation of the stationary Navier-Stokes problem with non-smooth data*, preprint (2025). [arXiv](https://arxiv.org/abs/2509.16461)
+
+### Thesis
+
+- [Un método de estabilización para la ecuación de Maxwell](https://web.dm.uba.ar/files/tesis_lic/2019/mendiluce.pdf) (2019) 

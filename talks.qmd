@@ -1,0 +1,15 @@
+---
+title: "Conferences and Talks"
+---
+
+### Conferences
+
+- Finite element approximation of the stationary Navier–Stokes problem with non-smooth Dirichlet data: a priori and a posteriori error analysis. Mixed Local and Nonlocal Operators: Analytical, Numerical and Probabilistic Perspectives, Buenos Aires, Argentina. Nov 2025.
+- Indoor radon concentration: Mathematical model and numerical simulation. X Congress of Applied, Computational and Industrial Mathematics, Córdoba, Argentina. May 2025.
+- Aproximación por elementos finitos del problema de Navier-Stokes estacionario con dato de borde no suave. UMA 2024 - Annual reunion of the Argentine Mathematical Union, Catamarca, Argentina. September 2024.
+- BAIL 2022 - Boundary and Interior Layers, Universidad de Buenos Aires, Argentina. December 2022 (assistance only)
+
+### Seminars
+
+- Aproximación por elementos finitos del problema de Navier-Stokes con dato de Dirichlet no suave. Universidad de Buenos Aires, July 2024
+
