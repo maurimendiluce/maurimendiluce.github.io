@@ -1,0 +1,36 @@
+project:
+  type: book
+
+book:
+  title: "Optimización"
+  search: true
+  repo-url: https://github.com
+  downloads: [pdf]
+  sharing: [twitter,linkedin]
+  page-footer: 
+    left: "2026, Mauricio Mendiluce" 
+    right: 
+      - icon: github
+        href: https://github.com/
+  cover-image: cover.png
+  chapters:
+    - index.qmd
+    - intro_julia.qmd
+    - part: "Repaso"
+      chapters: 
+        - clase_1.qmd 
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+
+
+

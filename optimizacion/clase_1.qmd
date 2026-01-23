@@ -1,0 +1,7 @@
+# Clase 1 {.unnumbered}
+
+::: callout
+## Exercise: Character or Number?
+
+Can you spot the difference between a character string and a number? Here's a test: Which of these are character strings and which are numbers? `1`, `"1"`, `"one"`.
+:::

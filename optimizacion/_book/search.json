@@ -1,0 +1,83 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Optimización",
+    "section": "",
+    "text": "Introducción\nEn esta página encontrará las clases y material sobre la materia Optimización\nSee Knuth (1984) for additional discussion of literate programming.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "crumbs": [
+      "Introducción"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Intro",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intro</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "2  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "index.html#introducción",
+    "href": "index.html#introducción",
+    "title": "Optimización",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "Introducción"
+    ]
+  },
+  {
+    "objectID": "intro_julia.html",
+    "href": "intro_julia.html",
+    "title": "Introducción a Julia",
+    "section": "",
+    "text": "Instalación",
+    "crumbs": [
+      "Introducción a Julia"
+    ]
+  },
+  {
+    "objectID": "intro_julia.html#instalación",
+    "href": "intro_julia.html#instalación",
+    "title": "Introducción a Julia",
+    "section": "",
+    "text": "TipUTF8 Column Names\n\n\n\nAs many machine learning models do not work properly with arbitrary UTF8 names, mlr3 defaults to throwing an error if any of the column names passed to r ref(\"as_task_regr()\") (and other task constructors) contain a non-ASCII character or do not comply with R’s variable naming scheme. Therefore, we recommend converting names with r ref(\"make.names()\") if possible. You can bypass this check by setting options(mlr3.allow_utf8_names = TRUE) (but do not be surprised if errors occur later, especially when passing objects to other packages).",
+    "crumbs": [
+      "Introducción a Julia"
+    ]
+  },
+  {
+    "objectID": "clase_1.html",
+    "href": "clase_1.html",
+    "title": "Clase 1",
+    "section": "",
+    "text": "NoneExercise: Character or Number?\n\n\n\nCan you spot the difference between a character string and a number? Here’s a test: Which of these are character strings and which are numbers? 1, \"1\", \"one\".",
+    "crumbs": [
+      "Repaso",
+      "Clase 1"
+    ]
+  }
+]

@@ -1,0 +1,7 @@
+## Introducción {.unnumbered}
+
+En esta página encontrará las clases y material sobre la materia Optimización
+
+See @knuth84 for additional discussion of literate programming.
+
+To learn more about Quarto books visit <https://quarto.org/docs/books>.
