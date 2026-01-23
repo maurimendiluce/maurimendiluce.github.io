@@ -7,7 +7,7 @@ website:
     search: true
     right:
       - text: "Home"
-        href: index.html
+        href: index.qmd
       - text: "Publications"
         href: publications.qmd
       - text: "Conferences and talks"
