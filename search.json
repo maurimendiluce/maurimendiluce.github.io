@@ -32,6 +32,69 @@
     "href": "teaching.html",
     "title": "Teaching",
     "section": "",
-    "text": "As Jefe de Trabajos Prácticos in the Department of Mathematics of the FCEyN (University of Buenos Aires).\n\nAnálisis Numérico (2023,2024,2025)\nOptimización (2022,2024,2025)\nAlgebra Lineal Computacional (2023)\nMatemática II (2022)\n\nEn construcción"
+    "text": "As Jefe de Trabajos Prácticos in the Department of Mathematics of the FCEyN (University of Buenos Aires).\n\nAnálisis Numérico (2023,2024,2025)\nOptimización (2022,2024,2025)\nAlgebra Lineal Computacional (2023)\nMatemática II (2022)"
+  },
+  {
+    "objectID": "optimizacion/summary.html",
+    "href": "optimizacion/summary.html",
+    "title": "Summary",
+    "section": "",
+    "text": "Summary\nIn summary, this book has no content whatsoever."
+  },
+  {
+    "objectID": "optimizacion/references.html",
+    "href": "optimizacion/references.html",
+    "title": "Bibliografía",
+    "section": "",
+    "text": "Bibliografía"
+  },
+  {
+    "objectID": "optimizacion/intro.html",
+    "href": "optimizacion/intro.html",
+    "title": "Intro",
+    "section": "",
+    "text": "Intro\nThis is a book created from markdown and executable code."
+  },
+  {
+    "objectID": "optimizacion/clase_1.html",
+    "href": "optimizacion/clase_1.html",
+    "title": "Clase 1",
+    "section": "",
+    "text": "Clase 1\n\n\n\n\n\n\nNoneExercise: Character or Number?\n\n\n\nCan you spot the difference between a character string and a number? Here’s a test: Which of these are character strings and which are numbers? 1, \"1\", \"one\"."
+  },
+  {
+    "objectID": "optimizacion/index.html",
+    "href": "optimizacion/index.html",
+    "title": "",
+    "section": "",
+    "text": "En construcción"
+  },
+  {
+    "objectID": "optimizacion/index.html#introducción",
+    "href": "optimizacion/index.html#introducción",
+    "title": "",
+    "section": "",
+    "text": "En construcción"
+  },
+  {
+    "objectID": "optimizacion/intro_julia.html",
+    "href": "optimizacion/intro_julia.html",
+    "title": "Introducción a Julia",
+    "section": "",
+    "text": "TipUTF8 Column Names\n\n\n\nAs many machine learning models do not work properly with arbitrary UTF8 names, mlr3 defaults to throwing an error if any of the column names passed to r ref(\"as_task_regr()\") (and other task constructors) contain a non-ASCII character or do not comply with R’s variable naming scheme. Therefore, we recommend converting names with r ref(\"make.names()\") if possible. You can bypass this check by setting options(mlr3.allow_utf8_names = TRUE) (but do not be surprised if errors occur later, especially when passing objects to other packages)."
+  },
+  {
+    "objectID": "optimizacion/intro_julia.html#instalación",
+    "href": "optimizacion/intro_julia.html#instalación",
+    "title": "Introducción a Julia",
+    "section": "",
+    "text": "TipUTF8 Column Names\n\n\n\nAs many machine learning models do not work properly with arbitrary UTF8 names, mlr3 defaults to throwing an error if any of the column names passed to r ref(\"as_task_regr()\") (and other task constructors) contain a non-ASCII character or do not comply with R’s variable naming scheme. Therefore, we recommend converting names with r ref(\"make.names()\") if possible. You can bypass this check by setting options(mlr3.allow_utf8_names = TRUE) (but do not be surprised if errors occur later, especially when passing objects to other packages)."
+  },
+  {
+    "objectID": "optimizacion/repaso.html",
+    "href": "optimizacion/repaso.html",
+    "title": "Repaso",
+    "section": "",
+    "text": "Repaso"
   }
 ]
