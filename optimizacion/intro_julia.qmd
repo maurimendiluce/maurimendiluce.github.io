@@ -9,4 +9,4 @@ Para las aplicaciones e implementaciones de estas clases se utilizará el lengua
 Para la instalación siga las instrucciones mencionadas [aquí](https://julialang.org/downloads/), según su sistema operativo.
 :::
 
-## Tutoriales
+### Tutoriales

@@ -174,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#instalación" id="toc-instalación" class="nav-link active" data-scroll-target="#instalación">Instalación</a></li>
+  <li><a href="#tutoriales" id="toc-tutoriales" class="nav-link active" data-scroll-target="#tutoriales">Tutoriales</a></li>
   </ul>
 </nav>
     </div>
@@ -200,21 +200,22 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="instalación" class="level2">
-<h2 class="anchored" data-anchor-id="instalación">Instalación</h2>
+<p>Para las aplicaciones e implementaciones de estas clases se utilizará el lenguaje de programación <a href="https://julialang.org/">Julia</a></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>UTF8 Column Names
+<span class="screen-reader-only">Tip</span>Instalación
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>As many machine learning models do not work properly with arbitrary UTF8 names, <code>mlr3</code> defaults to throwing an error if any of the column names passed to <code>r ref("as_task_regr()")</code> (and other task constructors) contain a non-ASCII character or do not comply with R’s variable naming scheme. Therefore, we recommend converting names with <code>r ref("make.names()")</code> if possible. You can bypass this check by setting <code>options(mlr3.allow_utf8_names = TRUE)</code> (but do not be surprised if errors occur later, especially when passing objects to other packages).</p>
+<p>Para la instalación siga las instrucciones mencionadas <a href="https://julialang.org/downloads/">aquí</a>, según su sistema operativo.</p>
 </div>
 </div>
+<section id="tutoriales" class="level3">
+<h3 class="anchored" data-anchor-id="tutoriales">Tutoriales</h3>
 
 
 </section>
