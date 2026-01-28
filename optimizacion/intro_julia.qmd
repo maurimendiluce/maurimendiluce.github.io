@@ -1,12 +1,12 @@
 # Introducción a Julia {.unnumbered}
 
-## Instalación
+Para las aplicaciones e implementaciones de estas clases se utilizará el lenguaje de programación [Julia](https://julialang.org/)
 
 :::{.callout-tip}
 
-## UTF8 Column Names
+## Instalación 
 
-As many machine learning models do not work properly with arbitrary UTF8 names, `mlr3` defaults to throwing an error if any of the column names passed to `r ref("as_task_regr()")` (and other task constructors) contain a non-ASCII character or do not comply with R's variable naming scheme.
-Therefore, we recommend converting names with `r ref("make.names()")` if possible.
-You can bypass this check by setting `options(mlr3.allow_utf8_names = TRUE)` (but do not be surprised if errors occur later, especially when passing objects to other packages).
+Para la instalación siga las instrucciones mencionadas [aquí](https://julialang.org/downloads/), según su sistema operativo.
 :::
+
+## Tutoriales
