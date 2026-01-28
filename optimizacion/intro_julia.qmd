@@ -10,3 +10,8 @@ Para la instalación siga las instrucciones mencionadas [aquí](https://julialan
 :::
 
 ### Tutoriales
+
+Si es la primera vez que utiliza Julia, pueden ser utiles los siguientes tutoriales:
+
+- [Tutorial 1](https://iojea.github.io/curso-julia/)
+- [Tutorial 2](https://www.matecdev.com/posts/julia-tutorial-science-engineering.html)
