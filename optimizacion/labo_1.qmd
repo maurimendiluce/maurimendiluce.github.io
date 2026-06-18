@@ -1,0 +1,54 @@
+# Cuadrados Mínimos: Ajuste de círculos {.unnumbered}
+
+El objetivo es implementar un algoritmo que ajuste conjuntos de datos con círcunferencias. Asumimos que los datos vienen dados por ${\bf x} = (x_1,...,x_n)^t$ e ${\bf y} = (y_1,...,y_n)^t$.
+
+### Ajuste algebraico 
+
+Un círculo puede definirse implíctamente con la ecuación:
+
+$$
+\alpha (x^2 + y^2) + \beta x + \gamma y + \delta = 0.
+$$
+
+Para garantizar unicidad en la escritura, asumiremos $\alpha = 1$. Además, según veremos más adelante, resultará útil reescribir los parámetros, notando:
+$$
+x^2+y^2 -2ax-2by -c = 0.
+$$
+
+Si todos los datos cayeran sobre un círculo tendríamos que la ecuación se satisface para todo $(x_i,y_i)$. Asumiendo que esto no sucede (los datos contienen error), buscaremos valores de $a$, $b$ y $c$ que minimicen:
+$$
+\sum_i (x_i^2 + y_i^2 -2ax_i-2by_i-c)^2.
+$$
+O, equivalentemente:
+$$
+\min_{a,b,c} \big\|2a{\bf x} + 2b{\bf y} + c - {\bf p}\big\|,
+$$
+donde 
+$$
+{\bf p} =\big(x_1^2+y_1^2, \dots,x_n^2+y_n^2\big)^t
+$$
+
+
+Este enfoque se conoce como *ajuste algebraico* del círculo, dado que se propone ajustar los parámetros de la ecuación algebraica que lo define.
+
+::: {.callout-tip}
+En primer lugar debemos poder leer los datos y graficarlos. Los datos a los que debemos calcular el ajuste se encuentran alojados en un archivo [`.mat`](https://drive.google.com/file/d/1iycLoLOakK5r5THxMyaKon7IgunSiZxV/view?usp=sharing) que contiene 10 conjuntos de datos (*"datos_1"*, *"datos_2"*, etc..). La librearia `MAT` nos ayuda a leer estos archivos. 
+
+
+```{.julia}
+using MAT, LinearAlgebra, Plots
+
+file = matopen("datos.mat")
+datos = read(file, "datos_1")
+
+scatter(datos[:,1],datos[:,2],label="datos",xlabel="x",ylabel="y")
+```
+:::
+
+::: callout
+**Ejercicio 1:** Construir una función `def_problem` que tome como argumento los datos y devuelva la matriz del ajuste junto con el vector del lado derecho teniendo en cuenta que lo que queremos es que estos se ajusten a una circunferencia.
+:::
+
+::: callout
+**Ejercicio 2:** Implementar una función `ajuste_alg` que reciba como argumento los datos y resuelva el problema resolviendo un problema de cuadrados mínimos (por ejemplo, *ecuaciones normales*, *descomposición QR*, etc..). La misma función debe graficar el ajuste junto con los datos. 
+:::

@@ -1,0 +1,54 @@
+# Modificación Levenberg-Marquardt para método de Newton {.unnumbered}
+
+Considerar $x^{(k+1)} = x^{(k)} - t_k \left(Hf(x^{(k)}) + \mu I\right)^{-1}\nabla f(x^{(k)})$, donde $\mu > 0$ es lo suficientemente grande como para que $B^{(k)} = Hf(x^{(k)}) + \mu$ sea definida positiva.
+
+**Obs:** si $\mu$ es demasiado grande, $d^{(k)}$ tiende a estar en la dirección de $-\nabla f(x^{(k)})$, pues
+
+$$
+(Hf(x^{(k)}) + \mu I)^{-1}\nabla f(x^{(k)})
+\approx
+\frac{1}{\mu}\nabla f(x^{(k)}).
+$$
+
+En cambio, si $\mu$ es pequeño, $d^{(k)}$ se parece más a la dirección de descenso del Método de Newton.
+
+Con la modificación de L-M, se obtiene un método que utiliza las ventajas del Método del Gradiente y del Método de Newton.
+
+- cerca del mínimo $\approx Hf(x)$ definida positiva $\approx \mu = 0$ o $\mu$ pequeño $\approx$ Método de Newton $\approx$ convergencia rápida cerca de un mínimo.
+
+- lejos del mínimo $\approx Hf(x)$ no definida positiva $\approx \mu$ grande $\approx$ Método del gradiente $\approx$ más velocidad de descenso.
+
+
+**Obs:** Si $\lambda_1,\ldots,\lambda_n$ son los autovalores de $Hf(x)$, entonces $\lambda_1 + \mu,\ldots,\lambda_n + \mu$ son los autovalores de $B = Hf(x) + \mu I$, y $B$ tiene los mismos autovectores que $Hf(x)$.
+
+Sea $v_i$ autovector de $Hf(x)$:
+
+$$
+\begin{aligned}
+Bv_i
+&= (Hf(x)+\mu I)v_i \\
+&= Hf(x)v_i + \mu Iv_i \\
+&= \lambda_i v_i + \mu v_i \\
+&= (\lambda_i+\mu)v_i
+\end{aligned}
+$$
+
+Entonces, en caso de que $Hf(x)$ no sea definida positiva, se puede utilizar su mínimo autovalor como una aproximación a $-\mu$.
+
+::: {.callout-note}
+```{.julia}
+Dada: f, grad_f, x_0, K_{max}, eps>0, gamma>0
+
+while ||grad_f(x_k)||>eps and k<K_{max}
+    B = Hf(x_k)
+    mu = min{lambda: lambda autovalor de B}
+    if mu <= 0
+        B = B + (-mu+gamma)I
+    end
+    d_k = -B\grad_f(x_k)
+    Determinar t_k
+    x_{k+1} = x_k + t_k*d_k
+    k = k + 1
+end
+```
+:::

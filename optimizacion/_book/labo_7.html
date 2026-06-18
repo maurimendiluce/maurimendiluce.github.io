@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Clase 1 – Optimización</title>
+<title>Optimización con restricciones: Método de penalidad – Optimización</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -33,8 +68,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro_julia.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./labo_8.html" rel="next">
+<link href="./labo_6.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -114,7 +149,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./clase_1.html">Clases prácticas</a></li><li class="breadcrumb-item"><a href="./clase_1.html">Clase 1</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_julia.html">Laboratorio</a></li><li class="breadcrumb-item"><a href="./labo_7.html">Optimización con restricciones: Método de penalidad</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -159,7 +194,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./clase_1.html" class="sidebar-item-text sidebar-link active">
+  <a href="./clase_1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Clase 1</span></a>
   </div>
 </li>
@@ -204,6 +239,30 @@ window.Quarto = {
  <span class="menu-text">Redes Neuronales: Aplicación de Descenso por Gradiente</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./labo_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Perfil de Desempeño</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./labo_6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modificación Levenberg-Marquardt para método de Newton</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./labo_7.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Optimización con restricciones: Método de penalidad</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./labo_8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Heurísticas</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -217,15 +276,21 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#función-de-penalización-cuadrática" id="toc-función-de-penalización-cuadrática" class="nav-link active" data-scroll-target="#función-de-penalización-cuadrática">Función de penalización cuadrática</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./clase_1.html">Clases prácticas</a></li><li class="breadcrumb-item"><a href="./clase_1.html">Clase 1</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_julia.html">Laboratorio</a></li><li class="breadcrumb-item"><a href="./labo_7.html">Optimización con restricciones: Método de penalidad</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Clase 1</h1>
+<h1 class="title">Optimización con restricciones: Método de penalidad</h1>
 </div>
 
 
@@ -242,45 +307,74 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<p>Consideremos el siguiente problema:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\min \quad &amp; f(x) \\
+\text{s.a.:} \quad &amp; g_i(x) \leq 0 \qquad i \in \mathcal{I}, \\
+&amp; h_j(x) = 0 \qquad j \in \mathcal{E}.
+\end{aligned}
+\]</span></p>
+<p>Con <span class="math inline">\(f,g,h \in C^1(\Omega)\)</span>. Consideraremos <span class="math inline">\(\Omega\)</span> al conjunto de puntos factibles, es decir:</p>
+<p><span class="math display">\[
+\Omega =
+\left\{
+x \in \mathbb{R}^n :
+g_i(x) \leq 0 \ \forall i \in \mathcal{I},
+\;
+h_j(x)=0 \ \forall j \in \mathcal{E}
+\right\}.
+\]</span></p>
+<p><strong>Idea:</strong> Minimizar <span class="math inline">\(f\)</span> sobre <span class="math inline">\(\mathbb{R}^n\)</span>, aplicándole una penalización a los puntos que no están en <span class="math inline">\(\Omega\)</span></p>
+<p>Sea <span class="math inline">\(P:\mathbb{R}^n\to \mathbb{R}\)</span> tal que: - <span class="math inline">\(P\)</span> es continua. - <span class="math inline">\(P(x)\ge 0 \quad \forall\, x\in\mathbb{R}^n\)</span> - <span class="math inline">\(P(x) = 0\)</span> si y solo si <span class="math inline">\(x\in\Omega\)</span></p>
+<p>Podemos minimizar <span class="math inline">\(f(x)+cP(x)\)</span> con <span class="math inline">\(c\in\mathbb{R}\)</span> utilizando técnicas de optimización irrestricta.</p>
+<section id="función-de-penalización-cuadrática" class="level2">
+<h2 class="anchored" data-anchor-id="función-de-penalización-cuadrática">Función de penalización cuadrática</h2>
+<p>Definimos la función de penalización cuadrática como</p>
+<p><span class="math display">\[
+Q(x,c) = f(x) + c \sum_{j\in\mathcal{E}} h_j^2(x) + c \sum_{i\in\mathcal{I}} \bigl(g_i^+(x)\bigr)^2,
+\]</span></p>
+<p>Donde <span class="math inline">\(c\)</span> es el <em>parámetro de penalización</em> y <span class="math inline">\(g_i^+ = \max\{0,g_i(x)\}\)</span>.</p>
+<p>Si hacemos <span class="math inline">\(c \xrightarrow[k\to\infty]{} \infty\)</span>, la violación de las restricciones será castigada con mayor severidad.</p>
+<p><strong>Idea:</strong> considerar una secuencia <span class="math inline">\(\{c_k\}\)</span> tal que <span class="math inline">\(c_k \xrightarrow[k\to\infty]{} \infty\)</span> y utilizar métodos de optimización irrestricta para encontrar el minimizador <span class="math inline">\(x_k\)</span> de <span class="math inline">\(Q(x,c_k)\)</span> para cada <span class="math inline">\(k\)</span>.</p>
+<p><strong>Observación:</strong> si sólo tenemos restricciones dadas por igualdad, <span class="math inline">\(Q(x,c)\)</span> sigue siendo <span class="math inline">\(C^1\)</span> (pues <span class="math inline">\(f,h_j\)</span> lo son) y se pueden utilizar los métodos vistos. En cambio, si hay restricciones dadas por desigualdad, podría no ser continua, por lo que los métodos podrían no comportarse de la forma esperada.</p>
+<p><strong>Lema:</strong> Sea <span class="math inline">\(x_k\)</span> mínimo de <span class="math inline">\(Q(x,c_k)\)</span>, vale lo siguiente:</p>
+<ul>
+<li><p><span class="math inline">\(Q(x_k,c_k)\le Q(x_{k+1},c_{k+1})\)</span></p></li>
+<li><p><span class="math inline">\(P(x_k)\ge P(x_{k+1})\)</span></p></li>
+<li><p><span class="math inline">\(f(x_k)\le f(x_{k+1})\)</span></p></li>
+</ul>
+<p><strong>Teorema:</strong> Sea <span class="math inline">\(\{x_k\}_{k\in\mathbb{N}}\)</span> la sucesión de puntos obtenidos con el método de penalidad, entonces cualquier punto límite de la misma es solución del problema <span class="math display">\[
+\min_{x\in\Omega} f(x).
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">None</span>Ejercicio 1:
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ol type="a">
-<li>Demostrar que si <span class="math inline">\(x^*\)</span> es un mínimo local estricto no singular de una función <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}\)</span> dos veces continuamente diferenciable, entonces <span class="math inline">\(x^*\)</span> es un punto estacionario aislado; es decir, existe una bola centrada en <span class="math inline">\(x^*\)</span> tal que <span class="math inline">\(x^*\)</span> es el único punto estacionario de <span class="math inline">\(f\)</span> dentro de esa bola.</li>
-<li>Utilizar la siguiente función de ejemplo <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span> para demostrar que esto no tiene por qué ser cierto si <span class="math inline">\(x^*\)</span> es un mínimo local estricto singular: <span class="math display">\[
-  f(x) =
-\begin{cases}
-x^2 \left(\sqrt{2} - \sin \left(\frac{4\pi}{3} - \sqrt{3} \ln(x^2) \right) \right) &amp; \text{si } x \neq 0, \\
-0 &amp; \text{si } x = 0.
-\end{cases}
-  \]</span></li>
-</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Dada<span class="op">:</span> f, h_j, g_i, x_0, c_0, alpha<span class="op">&gt;</span><span class="fl">1</span>, K_{max}, eps<span class="op">&gt;</span><span class="fl">0</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="op">||</span>x_{k<span class="op">+</span><span class="fl">1</span>}<span class="op">-</span>x_k<span class="op">||&gt;</span>eps and k<span class="op">&lt;</span>K_{max}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    Definir <span class="fu">Q</span>(x,c_k)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    x_{k<span class="op">+</span><span class="fl">1</span>} <span class="op">=</span> minimo de <span class="fu">Q</span>(x,c_k) (por ej, usando Armijo y punto inicial x_k)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x_{k<span class="op">+</span><span class="fl">1</span>} <span class="op">∈</span> Ω</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        PARAR</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        c_{k<span class="op">+</span><span class="fl">1</span>} <span class="op">=</span> alpha<span class="op">*</span>c_k</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        k <span class="op">=</span> k<span class="op">+</span><span class="fl">1</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p><strong>Solución:</strong></p>
-<hr>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">None</span>Ejercicio 2:
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Un mínimo local sin restricciones <span class="math inline">\(x^*\)</span> de una función <span class="math inline">\(f\)</span> se dice <em>localmente estable</em> si existe <span class="math inline">\(\delta &gt;0\)</span> tal que cualquier sucesión <span class="math inline">\(\{x^k \}\)</span> con <span class="math display">\[f(x^k) \to f(x^*), \quad \| x^k - x^* \| &lt; \delta, \quad \forall k \ge 0 \]</span> converge a <span class="math inline">\(x^*\)</span>. Muestrar que <span class="math inline">\(x^*\)</span> es localmente estable si y solo si <span class="math inline">\(x^*\)</span> es un mínimo local estricto, es decir, si existe un entorno <span class="math inline">\(U\)</span> de <span class="math inline">\(x^*\)</span> tal que para todo <span class="math inline">\(x \in U\)</span>, con <span class="math inline">\(x\ne x^*\)</span>, se tiene <span class="math inline">\(f(x^*) &lt; f(x)\)</span>.</p>
-</div>
-</div>
+<p>Valores iniciales estándar: <span class="math inline">\(c=1.5\)</span>, <span class="math inline">\(ε=10−3\)</span>, <span class="math inline">\(α=2\)</span>. Una buena idea es tomar <span class="math inline">\(x_0\notin \Omega\)</span>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -685,13 +779,13 @@ x^2 \left(\sqrt{2} - \sin \left(\frac{4\pi}{3} - \sqrt{3} \ln(x^2) \right) \righ
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Introducción">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introducción</span>
+      <a href="./labo_6.html" class="pagination-link" aria-label="Modificación Levenberg-Marquardt para método de Newton">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Modificación Levenberg-Marquardt para método de Newton</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro_julia.html" class="pagination-link" aria-label="Introducción a Julia">
-        <span class="nav-page-text">Introducción a Julia</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./labo_8.html" class="pagination-link" aria-label="Heurísticas">
+        <span class="nav-page-text">Heurísticas</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

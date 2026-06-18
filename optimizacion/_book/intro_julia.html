@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.35">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Introducción a Julia – Optimización</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -30,19 +33,18 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./clase_1.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./labo_1.html" rel="next">
+<link href="./clase_1.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d0e771311778b285ff17373dd916785d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -83,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_julia.html">Introducción a Julia</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_julia.html">Laboratorio</a></li><li class="breadcrumb-item"><a href="./intro_julia.html">Introducción a Julia</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -99,26 +101,8 @@ ul.task-list li input[type="checkbox"] {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Optimización</a> 
-        <div class="sidebar-tools-main tools-wide">
-    <a href="https://github.com" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+        <div class="sidebar-tools-main">
     <a href="./Optimización.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
-    <div class="dropdown">
-      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
-              <i class="bi bi-twitter pe-1"></i>
-            Twitter
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
-              <i class="bi bi-linkedin pe-1"></i>
-            LinkedIn
-            </a>
-          </li>
-      </ul>
-    </div>
 </div>
     </div>
       </div>
@@ -135,16 +119,10 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Introducción</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./intro_julia.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Introducción a Julia</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Repaso</span></a>
+ <span class="menu-text">Clases prácticas</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -153,6 +131,29 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./clase_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Clase 1</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Laboratorio</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_julia.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Introducción a Julia</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./labo_1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Clase 1</span></a>
   </div>
 </li>
@@ -175,13 +176,16 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#tutoriales" id="toc-tutoriales" class="nav-link active" data-scroll-target="#tutoriales">Tutoriales</a></li>
+  <li><a href="#por-qué-julia" id="toc-por-qué-julia" class="nav-link" data-scroll-target="#por-qué-julia">¿Por qué Julia?</a></li>
+  <li><a href="#sintaxis-intuitiva-y-flexible" id="toc-sintaxis-intuitiva-y-flexible" class="nav-link" data-scroll-target="#sintaxis-intuitiva-y-flexible">Sintaxis intuitiva y flexible</a></li>
+  <li><a href="#ejemplo" id="toc-ejemplo" class="nav-link" data-scroll-target="#ejemplo">Ejemplo</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_julia.html">Laboratorio</a></li><li class="breadcrumb-item"><a href="./intro_julia.html">Introducción a Julia</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Introducción a Julia</h1>
 </div>
@@ -201,13 +205,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Para las aplicaciones e implementaciones de estas clases se utilizará el lenguaje de programación <a href="https://julialang.org/">Julia</a></p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Instalación
+<span class="screen-reader-only">Note</span>Instalación
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -221,6 +225,80 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="https://iojea.github.io/curso-julia/">Tutorial 1</a></li>
 <li><a href="https://www.matecdev.com/posts/julia-tutorial-science-engineering.html">Tutorial 2</a></li>
 </ul>
+</section>
+<section id="por-qué-julia" class="level3">
+<h3 class="anchored" data-anchor-id="por-qué-julia">¿Por qué Julia?</h3>
+<p>Existen muchos lenguajes de programación consolidados, como Python, Matlab, R o C. Cuando se introduce un nuevo lenguaje (ya no tan nuevo) la pregunta natural es por qué debería aprenderlo. ¿Cuáles son sus ventajas y desventajas?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ventajas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Sintaxis intuitiva y flexible:</strong> Julia fue diseñado para ser fácil de usar y potente a la vez. Ofrece una sintaxis muy intuitiva y admite muchos conceptos útiles de otros lenguajes.</li>
+<li><strong>Rendimiento:</strong> Dado que Julia es un lenguaje compilado, el código escrito en Julia suele ser más rápido que el escrito en Python puro o Matlab, por ejemplo.</li>
+<li><strong>Sistema de tipos:</strong> Al igual que en Matlab o Python, no es necesario utilizar anotaciones de tipo para las variables o los argumentos de entrada de las funciones. Sin embargo, dado que todo en Julia tiene su propio tipo, es posible emplearlas. Esto permite que el compilador optimice el código y, además, ayuda a prevenir errores.</li>
+<li><strong>Multiple dispatch:</strong> En Julia, el multiple dispatch implica que una función consta de varios métodos que pueden diferir en el número de argumentos de entrada o en su tipo. Al llamar a una función, se ejecuta la definición de método más específica que coincida con el número y el tipo de argumentos. Esto permite definir funciones generales como <code>convert</code> para todas las operaciones de conversión, en lugar de usar nombres de funciones específicos como <code>str2double</code>, que se usa habitualmente en Matlab.<br>
+</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Desventajas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Paquetes limitados:</strong> Si bien Julia crece rápidamente y cuenta con muchos paquetes, no puede competir con la cantidad de paquetes disponibles en Python o R. Sin embargo, Julia ofrece una forma sencilla de interactuar con otros lenguajes. Si no se encuentra un paquete adecuado en Julia, es posible utilizar paquetes de otros lenguajes.</li>
+<li><strong>Primera ejecución lenta:</strong> Dado que Julia utiliza compilación just-in-time, la primera llamada a cada función es más lenta debido a la compilación. Esta ralentización puede ser significativa si se llaman varias funciones por primera vez. Esto incluye la creación de un gráfico en una nueva sesión de Julia, ya que los paquetes para gráficos son extensos y utilizan muchas funciones. El resultado es un tiempo prolongado hasta la primera gráfica (aproximadamente 20 segundos con Plots.jl).</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="sintaxis-intuitiva-y-flexible" class="level3">
+<h3 class="anchored" data-anchor-id="sintaxis-intuitiva-y-flexible">Sintaxis intuitiva y flexible</h3>
+<p>Julia proporciona una sintaxis muy intuitiva y a la vez flexible, que permite a los usuarios escribir funciones relativamente complejas de forma sencilla y legible. Como ejemplo, podemos comparar la definición de la función que calcula el número de Fibonacci. Una implementación básica de esta función en Matlab sería:</p>
+<pre><code>function f = fib(n)
+    if n &lt; 2
+        f = n;
+    else
+        f = fib(n-1) + fib(n-2);
+    end
+end</code></pre>
+<p>En Python:</p>
+<pre><code>def fib(n):
+    return n if n&lt;2 else fib(n-1) + fib(n-2)</code></pre>
+<p>En Julia:</p>
+<pre><code>fib(n::Int) = n &lt; 2 ? n : fib(n-1) + fib(n-2)</code></pre>
+<p>o</p>
+<pre><code>function fib(n::Int)
+    if n &lt; 2
+        return n
+    else
+        return fib(n-1) + fib(n-2)
+    end
+end</code></pre>
+<p>Otra ventaja es que Julia ofrece muchas características prácticas propias de otros lenguajes:</p>
+<ul>
+<li>La sintaxis de las operaciones con matrices está inspirada en Matlab.</li>
+<li>Los paquetes estadísticos utilizan una sintaxis similar a la de los paquetes de R.</li>
+<li>Es posible utilizar comprensiones de listas y generadores como en Python.</li>
+</ul>
+<p>Una de las ventajas más evidentes de Julia es su velocidad. Gracias a la compilación JIT, Julia logra un rendimiento similar al de C sin necesidad de trucos ni paquetes especiales. Esto se puede apreciar en la siguiente figura, que muestra una comparación de velocidad entre varios lenguajes para múltiples microbenchmarks. En la página web oficial de <a href="https://julialang.org/benchmarks/">Julia Micro-Benchmarks</a> se encuentra una descripción completa de estos microbenchmarks.</p>
+<p><img src="./benchmarks.png" class="img-fluid"></p>
+</section>
+<section id="ejemplo" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo">Ejemplo</h3>
 
 
 </section>
@@ -628,12 +706,12 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Introducción">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introducción</span>
+      <a href="./clase_1.html" class="pagination-link" aria-label="Clase 1">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Clase 1</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./clase_1.html" class="pagination-link" aria-label="Clase 1">
+      <a href="./labo_1.html" class="pagination-link" aria-label="Clase 1">
         <span class="nav-page-text">Clase 1</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -648,14 +726,7 @@ ul.task-list li input[type="checkbox"] {
       &nbsp;
     </div>
     <div class="nav-footer-right">
-      <ul class="footer-items list-unstyled">
-    <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/">
-      <i class="bi bi-github" role="img">
-</i> 
-    </a>
-  </li>  
-</ul>
+      &nbsp;
     </div>
   </div>
 </footer>

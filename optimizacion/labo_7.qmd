@@ -1,0 +1,81 @@
+# Optimización con restricciones: Método de penalidad {.unnumbered}
+
+Consideremos el siguiente problema:
+
+$$
+\begin{aligned}
+\min \quad & f(x) \\
+\text{s.a.:} \quad & g_i(x) \leq 0 \qquad i \in \mathcal{I}, \\
+& h_j(x) = 0 \qquad j \in \mathcal{E}.
+\end{aligned}
+$$
+
+Con $f,g,h \in C^1(\Omega)$. Consideraremos $\Omega$ al conjunto de puntos factibles, es decir:
+
+$$
+\Omega =
+\left\{
+x \in \mathbb{R}^n :
+g_i(x) \leq 0 \ \forall i \in \mathcal{I},
+\;
+h_j(x)=0 \ \forall j \in \mathcal{E}
+\right\}.
+$$
+
+**Idea:** Minimizar $f$ sobre $\mathbb{R}^n$, aplicándole una penalización a los puntos que no están en $\Omega$
+
+Sea $P:\mathbb{R}^n\to \mathbb{R}$ tal que:
+- $P$ es continua.
+- $P(x)\ge 0 \quad \forall\, x\in\mathbb{R}^n$
+- $P(x) = 0$ si y solo si $x\in\Omega$
+
+Podemos minimizar $f(x)+cP(x)$ con $c\in\mathbb{R}$ utilizando técnicas de optimización irrestricta.
+
+## Función de penalización cuadrática
+
+Definimos la función de penalización cuadrática como
+
+$$
+Q(x,c) = f(x) + c \sum_{j\in\mathcal{E}} h_j^2(x) + c \sum_{i\in\mathcal{I}} \bigl(g_i^+(x)\bigr)^2,
+$$
+
+Donde $c$ es el *parámetro de penalización* y $g_i^+ = \max\{0,g_i(x)\}$.
+
+Si hacemos $c \xrightarrow[k\to\infty]{} \infty$, la violación de las restricciones será castigada con mayor severidad.
+
+**Idea:** considerar una secuencia $\{c_k\}$ tal que $c_k \xrightarrow[k\to\infty]{} \infty$ y utilizar métodos de optimización irrestricta para encontrar el minimizador $x_k$ de $Q(x,c_k)$ para cada $k$.
+
+**Observación:** si sólo tenemos restricciones dadas por igualdad, $Q(x,c)$ sigue siendo $C^1$ (pues $f,h_j$ lo son) y se pueden utilizar los métodos vistos. En cambio, si hay restricciones dadas por desigualdad, podría no ser continua, por lo que los métodos podrían no comportarse de la forma esperada.
+
+
+**Lema:** Sea $x_k$ mínimo de $Q(x,c_k)$, vale lo siguiente:
+
+- $Q(x_k,c_k)\le Q(x_{k+1},c_{k+1})$
+
+- $P(x_k)\ge P(x_{k+1})$
+
+- $f(x_k)\le f(x_{k+1})$
+
+**Teorema:** Sea $\{x_k\}_{k\in\mathbb{N}}$ la sucesión de puntos obtenidos con el método de penalidad, entonces cualquier punto límite de la misma es solución del problema
+$$
+\min_{x\in\Omega} f(x).
+$$
+
+::: {.callout-note}
+```{.julia}
+Dada: f, h_j, g_i, x_0, c_0, alpha>1, K_{max}, eps>0
+
+while ||x_{k+1}-x_k||>eps and k<K_{max}
+    Definir Q(x,c_k)
+    x_{k+1} = minimo de Q(x,c_k) (por ej, usando Armijo y punto inicial x_k)
+    if x_{k+1} ∈ Ω
+        PARAR
+    else
+        c_{k+1} = alpha*c_k
+        k = k+1
+    end
+end
+```
+:::
+
+Valores iniciales estándar: $c=1.5$, $ε=10−3$, $α=2$. Una buena idea es tomar $x_0\notin \Omega$.

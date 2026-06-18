@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Clase 1 – Optimización</title>
+<title>Gauss - Newton: Ajuste geométrico – Optimización</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -33,8 +68,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro_julia.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./labo_4.html" rel="next">
+<link href="./labo_2.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -114,7 +149,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./clase_1.html">Clases prácticas</a></li><li class="breadcrumb-item"><a href="./clase_1.html">Clase 1</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_julia.html">Laboratorio</a></li><li class="breadcrumb-item"><a href="./labo_3.html">Gauss - Newton: Ajuste geométrico</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -159,7 +194,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./clase_1.html" class="sidebar-item-text sidebar-link active">
+  <a href="./clase_1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Clase 1</span></a>
   </div>
 </li>
@@ -194,7 +229,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labo_3.html" class="sidebar-item-text sidebar-link">
+  <a href="./labo_3.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Gauss - Newton: Ajuste geométrico</span></a>
   </div>
 </li>
@@ -217,15 +252,22 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#ajuste-geométrico" id="toc-ajuste-geométrico" class="nav-link active" data-scroll-target="#ajuste-geométrico">Ajuste geométrico</a></li>
+  <li><a href="#datos-singulares" id="toc-datos-singulares" class="nav-link" data-scroll-target="#datos-singulares">Datos singulares</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./clase_1.html">Clases prácticas</a></li><li class="breadcrumb-item"><a href="./clase_1.html">Clase 1</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_julia.html">Laboratorio</a></li><li class="breadcrumb-item"><a href="./labo_3.html">Gauss - Newton: Ajuste geométrico</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Clase 1</h1>
+<h1 class="title">Gauss - Newton: Ajuste geométrico</h1>
 </div>
 
 
@@ -242,45 +284,107 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<p>El objetivo es implementar un algoritmo que ajuste conjuntos de datos con círcunferencias. Asumimos que los datos vienen dados por <span class="math inline">\({\bf x} = (x_1,...,x_n)^t\)</span> e <span class="math inline">\({\bf y} = (y_1,...,y_n)^t\)</span>.</p>
+<section id="ajuste-geométrico" class="level3">
+<h3 class="anchored" data-anchor-id="ajuste-geométrico">Ajuste geométrico</h3>
+<p>El ajuste algebraico, al ceñirse a un modelo de cuadrados mínimos clásico, puede resolverse de manera simple y veloz. Sin embargo, no tiene en cuenta la naturaleza geométrica del problema: no minimiza ninguna distancia. Esto hace que en algunos casos se obtengan resultados muy distintos de los esperados. El <em>ajuste geométrico</em> consiste en minimizar las distancias de los datos al círculo.</p>
+<p>Notamos <span class="math inline">\(C(a,b,r)\)</span> al círculo con centro <span class="math inline">\((a,b)\)</span> y radio <span class="math inline">\(r\)</span> y <span class="math display">\[
+d_i = \sqrt{(x_i-a)^2+(y_i-b)^2}-r,
+\]</span></p>
+<p>a la distancia de <span class="math inline">\((x_i,y_i)\)</span> a <span class="math inline">\(C(a,b,r)\)</span>.</p>
+<p>El problema de determinar los parámetros <span class="math inline">\(a,b,r\)</span> que mejor ajusten los datos <span class="math inline">\({\bf x}\)</span>,<span class="math inline">\({\bf y}\)</span> está dado por: <span class="math display">\[
+\min F(a,b,r)
+\]</span></p>
+<p>donde</p>
+<p><span class="math display">\[
+F(a,b,r) = \sum_{i=1}^n d_i^2 = \sum_{i=1}^n\Big(\sqrt{(x_i-a)^2+(y_i-b)^2}-r\Big)^2.
+\]</span></p>
+<p>Es importante observar que este es un problema de cuadrados mínimos <em>no lineal</em>, por lo cual no es posible aplicar de manera directa las técnicas habituales de cuadrados mínimos. Para resolver esto utilizaremos el método iterativo de Gauss-Newton, que describimos a continuación.</p>
+<p>El objetivo es minimizar <span class="math display">\[
+\sum_{i=1}^n d_i(\theta)^2, \quad \theta = (a,b,r).
+\]</span></p>
+<p>Notamos <span class="math inline">\({\bf d}(\theta) = (d_1(\theta),\dots,d_n(\theta))^t\)</span>. Idealmente (si los datos coincidieran en un mismo círculo) tendríamos que la solución optima <span class="math inline">\(\theta^*\)</span> satisface <span class="math inline">\({\bf d}(\theta^*) = {\bf 0}\)</span>.</p>
+<p>Desarrollando el polinomio de Taylor a orden 1 tenemos que: <span class="math display">\[
+{\bf d}(\theta+{\bf h}) \simeq {\bf d}(\theta)+J(\theta){\bf h}\sim {\bf 0},
+\]</span></p>
+<p>donde <span class="math inline">\(J\)</span> es la matriz diferencial de <span class="math inline">\({\bf d}\)</span>. El método de Gauss-Newton toma una solución inicial <span class="math inline">\(\theta_0\)</span>, resuelve el problema de cuadrados mínimos: <span class="math display">\[
+J(\theta_0){\bf h} = -{\bf d}(\theta_0),
+\]</span></p>
+<p>toma <span class="math inline">\(\theta_1 = \theta_0 + {\bf h}\)</span>, e itera el procedimiento, calculando una sucesión <span class="math inline">\(\theta_i\)</span> y deteniéndose cuando se satisface algún criterio de convergencia.</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">None</span>Ejercicio 1:
+<div class="callout-body-container">
+<p><strong>Ejercicio 1:</strong> Implementar las siguientes funciones: 1. una función que retorne el vector <span class="math inline">\({\bf d}(\theta)\)</span>, 2. una función que retorne el valor de <span class="math inline">\(F\)</span>, 3. una función que calcule la matriz diferencial <span class="math inline">\(J\)</span> de <span class="math inline">\({\bf d}\)</span> dependiendo del <span class="math inline">\(\theta_0\)</span>.</p>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<ol type="a">
-<li>Demostrar que si <span class="math inline">\(x^*\)</span> es un mínimo local estricto no singular de una función <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}\)</span> dos veces continuamente diferenciable, entonces <span class="math inline">\(x^*\)</span> es un punto estacionario aislado; es decir, existe una bola centrada en <span class="math inline">\(x^*\)</span> tal que <span class="math inline">\(x^*\)</span> es el único punto estacionario de <span class="math inline">\(f\)</span> dentro de esa bola.</li>
-<li>Utilizar la siguiente función de ejemplo <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span> para demostrar que esto no tiene por qué ser cierto si <span class="math inline">\(x^*\)</span> es un mínimo local estricto singular: <span class="math display">\[
-  f(x) =
-\begin{cases}
-x^2 \left(\sqrt{2} - \sin \left(\frac{4\pi}{3} - \sqrt{3} \ln(x^2) \right) \right) &amp; \text{si } x \neq 0, \\
-0 &amp; \text{si } x = 0.
-\end{cases}
-  \]</span></li>
+</div>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Ejercicio 2:</strong> Implementar una función <code>ajuste_geom</code> que implemente el algoritmo de Gauss-Newton descripto, resolviendo <span class="math display">\[
+J(\theta_0){\bf h} = -{\bf d}(\theta_0),
+\]</span></p>
+<ol type="1">
+<li><p>Como se hizo en el ajuste geométrio.</p></li>
+<li><p>A través de la descomposición en valores singulares de <span class="math inline">\(J\)</span>, <span class="math inline">\(J=U\Sigma V^t\)</span>. Algo que se puede hacer es que la función imprima también un mensaje si el problema está mal condicionado, es decir si <span class="math inline">\(J\)</span> tiene un número de condición muy grande.</p></li>
 </ol>
+<p><em>Sugerencia:</em> El proceso iterativo debe comenzar con algun <span class="math inline">\(\theta_0\)</span>. Este puede tomarlo como la solución del algebraico.</p>
 </div>
 </div>
-<p><strong>Solución:</strong></p>
-<hr>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">None</span>Ejercicio 2:
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Un mínimo local sin restricciones <span class="math inline">\(x^*\)</span> de una función <span class="math inline">\(f\)</span> se dice <em>localmente estable</em> si existe <span class="math inline">\(\delta &gt;0\)</span> tal que cualquier sucesión <span class="math inline">\(\{x^k \}\)</span> con <span class="math display">\[f(x^k) \to f(x^*), \quad \| x^k - x^* \| &lt; \delta, \quad \forall k \ge 0 \]</span> converge a <span class="math inline">\(x^*\)</span>. Muestrar que <span class="math inline">\(x^*\)</span> es localmente estable si y solo si <span class="math inline">\(x^*\)</span> es un mínimo local estricto, es decir, si existe un entorno <span class="math inline">\(U\)</span> de <span class="math inline">\(x^*\)</span> tal que para todo <span class="math inline">\(x \in U\)</span>, con <span class="math inline">\(x\ne x^*\)</span>, se tiene <span class="math inline">\(f(x^*) &lt; f(x)\)</span>.</p>
+<p>Para resolver usando <code>svd</code> pueden utilizar el comando <code>svd</code> del paquete <code>LinearAlgebra</code> y luego usar la pseudo inversa <span class="math inline">\(A^{\dagger}=V\Sigma^{-1}U^t\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="datos-singulares" class="level3">
+<h3 class="anchored" data-anchor-id="datos-singulares">Datos singulares</h3>
+<p>Cuando la matriz <span class="math inline">\(J\)</span> está cerca de una matriz de rango menor que 3 el error numérico del método anterior crece, haciendo que la solución resulte poco confiable. Es importante remarcar que este inconveniente es intrínseco a la matriz <span class="math inline">\(J\)</span> y, más esencialmente, a los datos <span class="math inline">\({\bf x}\)</span> e <span class="math inline">\({\bf y}\)</span>. Para resolver este inconveniente Levenberg y Marquardt propusieron una modificación del algoritmo de Gauss-Newton.</p>
+<section id="resolviendo-el-sistema-como-cuadrados-mínimos" class="level4">
+<h4 class="anchored" data-anchor-id="resolviendo-el-sistema-como-cuadrados-mínimos">Resolviendo el sistema como cuadrados mínimos</h4>
+<p>Si <span class="math inline">\(A = J^tJ\)</span>, aunque esto es una matriz simetrica semi definida positiva, podría estar “cerca” de una matriz singular. La idea será tomar un parametro <span class="math inline">\(\lambda\)</span> tal que <span class="math inline">\(A+\lambda I\)</span> se “aleje” de la matriz singular. Si <span class="math inline">\(\lambda_1,...,\lambda_n\)</span> son los autovalores de <span class="math inline">\(A\)</span>, entonces <span class="math inline">\(\lambda_1+\lambda,...,\lambda_n+\lambda\)</span> son autovalres de <span class="math inline">\(A+\lambda I\)</span>. Además <span class="math inline">\(A+\lambda I\)</span> tiene los mismos autovectores que <span class="math inline">\(A\)</span>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>A,epsilon<span class="op">&gt;</span><span class="fl">0</span>,alpha<span class="op">&gt;</span><span class="fl">0</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">\</span>lambda <span class="op">=</span> <span class="op">\</span>min<span class="op">\</span>{<span class="op">\</span>lambda<span class="op">:</span> <span class="op">\</span>lambda autovalor de A<span class="op">\</span>}</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">\</span>lambda<span class="op">\</span>leq epsilon</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> A <span class="op">+</span> alpha I</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>¿Cómo se podría ir tomando el valor de <span class="math inline">\(\alpha\)</span>?</p>
+</section>
+<section id="resolviendo-con-svd" class="level4">
+<h4 class="anchored" data-anchor-id="resolviendo-con-svd">Resolviendo con SVD</h4>
+<p>Se elige un parámetro <span class="math inline">\(\lambda\)</span> y se resuelve el sistema reemplazando: <span class="math display">\[
+\Sigma = \Sigma + \lambda I.
+\]</span></p>
+<p>De este modo se “corrige” <span class="math inline">\(\Sigma\)</span> para salvar su (casi) singularidad. Cuanto mayor es el valor de <span class="math inline">\(\lambda\)</span>, más se parece el vector <span class="math inline">\({\bf h}\)</span> resultante al dado por el método del gradiente; cuanto menor es <span class="math inline">\(\lambda\)</span>, más parecida es la iteración a la correspondiente al método de Gauss-Newton puro. La elección de <span class="math inline">\(\lambda\)</span> no resulta en absoluto trivial. Marquardt sugirió una mecánica iterativa, que actualiza el valor de <span class="math inline">\(\lambda\)</span> en cada paso, según el comportamiento de <span class="math inline">\(J\)</span>:</p>
+<p>Se toma un valor inicial <span class="math inline">\(\lambda_0\)</span> (por ejemplo <span class="math inline">\(\lambda_0 = 1\)</span>) y un parámetro de correción <span class="math inline">\(\alpha&gt;1\)</span>. Se considera la solución inicial <span class="math inline">\(\theta=(a,b,r)\)</span> y se calculan los valores <span class="math inline">\(\theta'=(a',b',r')\)</span> y <span class="math inline">\(\theta''=(a'',b'',r'')\)</span>, correspondientes a realizar una iteración del método con <span class="math inline">\(\lambda = \lambda_0\)</span> y con <span class="math inline">\(\lambda = \frac{\lambda_0}{\alpha}\)</span>, respectivamente. Para todas estas soluciones se computa el valor del funcional <span class="math inline">\(F\)</span>. Si tanto <span class="math inline">\(\theta'\)</span> como <span class="math inline">\(\theta''\)</span> arrojan valores de <span class="math inline">\(F\)</span> mayores que el correspondiente a <span class="math inline">\(\theta\)</span>, entonces se agranda <span class="math inline">\(\lambda\)</span> iterando: <span class="math inline">\(\lambda = \alpha\lambda\)</span> hasta hallar un <span class="math inline">\(\lambda\)</span> que mejore el valor del funcional. Si, en cambio, <span class="math inline">\(F(\theta'')&lt;F(\theta)\)</span>, se actualiza <span class="math inline">\(\lambda = \frac{\lambda}{\alpha}\)</span>, mientras que si <span class="math inline">\(F(\theta')&lt;F(\theta)\)</span>, se conserva el valor de <span class="math inline">\(\lambda\)</span> actual.</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Ejercicio 3:</strong> Implementar una función <code>levenber_marquardt</code> que ejecute el método de Gauss-Newton con las variantes de Levenberg-Marquardt descriptas anteriormente.</p>
+</div>
 </div>
 </div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -685,13 +789,13 @@ x^2 \left(\sqrt{2} - \sin \left(\frac{4\pi}{3} - \sqrt{3} \ln(x^2) \right) \righ
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Introducción">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introducción</span>
+      <a href="./labo_2.html" class="pagination-link" aria-label="Aproximación de gradiente y método de descenso">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Aproximación de gradiente y método de descenso</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro_julia.html" class="pagination-link" aria-label="Introducción a Julia">
-        <span class="nav-page-text">Introducción a Julia</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./labo_4.html" class="pagination-link" aria-label="Redes Neuronales: Aplicación de Descenso por Gradiente">
+        <span class="nav-page-text">Redes Neuronales: Aplicación de Descenso por Gradiente</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

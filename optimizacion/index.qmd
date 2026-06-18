@@ -1,3 +1,7 @@
-## Introducción {.unnumbered}
+# Introducción {.unnumbered}
 
-En construcción
+**¡Bienvenidos/as!**
+
+Esta página está dedicada a las actividades que realizaremos durante el cuatrimestre. Para ver la información de la materia se pueden dirigir al [campus](https://campus.exactas.uba.ar/course/view.php?id=1069).
+
+A lo largo de la materia usaremos principalmente los libros de @luenberger y @bertsekas.

@@ -2,7 +2,7 @@
 
 Para las aplicaciones e implementaciones de estas clases se utilizará el lenguaje de programación [Julia](https://julialang.org/)
 
-:::{.callout-tip}
+:::{.callout-note}
 
 ## Instalación 
 
@@ -15,3 +15,72 @@ Si es la primera vez que utiliza Julia, pueden ser utiles los siguientes tutoria
 
 - [Tutorial 1](https://iojea.github.io/curso-julia/)
 - [Tutorial 2](https://www.matecdev.com/posts/julia-tutorial-science-engineering.html)
+
+### ¿Por qué Julia?
+
+Existen muchos lenguajes de programación consolidados, como Python, Matlab, R o C. Cuando se introduce un nuevo lenguaje (ya no tan nuevo) la pregunta natural es por qué debería aprenderlo. ¿Cuáles son sus ventajas y desventajas? 
+
+:::{.callout-tip}
+## Ventajas
+
+- **Sintaxis intuitiva y flexible:** Julia fue diseñado para ser fácil de usar y potente a la vez. Ofrece una sintaxis muy intuitiva y admite muchos conceptos útiles de otros lenguajes.
+- **Rendimiento:** Dado que Julia es un lenguaje compilado, el código escrito en Julia suele ser más rápido que el escrito en Python puro o Matlab, por ejemplo.
+- **Sistema de tipos:** Al igual que en Matlab o Python, no es necesario utilizar anotaciones de tipo para las variables o los argumentos de entrada de las funciones. Sin embargo, dado que todo en Julia tiene su propio tipo, es posible emplearlas. Esto permite que el compilador optimice el código y, además, ayuda a prevenir errores.
+- **Multiple dispatch:** En Julia, el multiple dispatch implica que una función consta de varios métodos que pueden diferir en el número de argumentos de entrada o en su tipo. Al llamar a una función, se ejecuta la definición de método más específica que coincida con el número y el tipo de argumentos. Esto permite definir funciones generales como `convert` para todas las operaciones de conversión, en lugar de usar nombres de funciones específicos como `str2double`, que se usa habitualmente en Matlab.  
+:::
+
+::: {.callout-important}
+## Desventajas
+
+- **Paquetes limitados:** Si bien Julia crece rápidamente y cuenta con muchos paquetes, no puede competir con la cantidad de paquetes disponibles en Python o R. Sin embargo, Julia ofrece una forma sencilla de interactuar con otros lenguajes. Si no se encuentra un paquete adecuado en Julia, es posible utilizar paquetes de otros lenguajes.
+- **Primera ejecución lenta:** Dado que Julia utiliza compilación just-in-time, la primera llamada a cada función es más lenta debido a la compilación. Esta ralentización puede ser significativa si se llaman varias funciones por primera vez. Esto incluye la creación de un gráfico en una nueva sesión de Julia, ya que los paquetes para gráficos son extensos y utilizan muchas funciones. El resultado es un tiempo prolongado hasta la primera gráfica (aproximadamente 20 segundos con Plots.jl).
+:::
+
+### Sintaxis intuitiva y flexible
+
+Julia proporciona una sintaxis muy intuitiva y a la vez flexible, que permite a los usuarios escribir funciones relativamente complejas de forma sencilla y legible. Como ejemplo, podemos comparar la definición de la función que calcula el número de Fibonacci. Una implementación básica de esta función en Matlab sería:
+
+```
+function f = fib(n)
+    if n < 2
+        f = n;
+    else
+        f = fib(n-1) + fib(n-2);
+    end
+end
+```
+
+En Python:
+
+```
+def fib(n):
+    return n if n<2 else fib(n-1) + fib(n-2)
+```
+
+En Julia:
+
+```
+fib(n::Int) = n < 2 ? n : fib(n-1) + fib(n-2)
+```
+o
+```
+function fib(n::Int)
+    if n < 2
+        return n
+    else
+        return fib(n-1) + fib(n-2)
+    end
+end
+```
+
+Otra ventaja es que Julia ofrece muchas características prácticas propias de otros lenguajes:
+
+- La sintaxis de las operaciones con matrices está inspirada en Matlab.
+- Los paquetes estadísticos utilizan una sintaxis similar a la de los paquetes de R.
+- Es posible utilizar comprensiones de listas y generadores como en Python.
+
+Una de las ventajas más evidentes de Julia es su velocidad. Gracias a la compilación JIT, Julia logra un rendimiento similar al de C sin necesidad de trucos ni paquetes especiales. Esto se puede apreciar en la siguiente figura, que muestra una comparación de velocidad entre varios lenguajes para múltiples microbenchmarks. En la página web oficial de [Julia Micro-Benchmarks](https://julialang.org/benchmarks/) se encuentra una descripción completa de estos microbenchmarks.
+
+![](/benchmarks.png)
+
+### Ejemplo

@@ -1,0 +1,103 @@
+# Gauss - Newton: Ajuste geométrico {.unnumbered}
+
+El objetivo es implementar un algoritmo que ajuste conjuntos de datos con círcunferencias. Asumimos que los datos vienen dados por ${\bf x} = (x_1,...,x_n)^t$ e ${\bf y} = (y_1,...,y_n)^t$.
+
+### Ajuste geométrico
+
+El ajuste algebraico, al ceñirse a un modelo de cuadrados mínimos clásico, puede resolverse de manera simple y veloz. Sin embargo, no tiene en cuenta la naturaleza geométrica del problema: no minimiza ninguna distancia. Esto hace que en algunos casos se obtengan resultados muy distintos de los esperados. El *ajuste geométrico* consiste en minimizar las distancias de los datos al círculo. 
+
+ Notamos $C(a,b,r)$ al círculo con centro $(a,b)$ y radio $r$ y 
+$$
+d_i = \sqrt{(x_i-a)^2+(y_i-b)^2}-r,
+$$
+
+a la distancia de $(x_i,y_i)$ a $C(a,b,r)$. 
+
+El problema de determinar los parámetros $a,b,r$ que mejor ajusten los datos ${\bf x}$,${\bf y}$ está dado por:
+$$
+ \min F(a,b,r)
+$$
+
+donde 
+
+$$
+F(a,b,r) = \sum_{i=1}^n d_i^2 = \sum_{i=1}^n\Big(\sqrt{(x_i-a)^2+(y_i-b)^2}-r\Big)^2.
+$$
+
+Es importante observar que este es un problema de cuadrados mínimos *no lineal*, por lo cual no es posible aplicar de manera directa las técnicas habituales de cuadrados mínimos. Para resolver esto utilizaremos el método iterativo de Gauss-Newton, que describimos a continuación.
+
+El objetivo es minimizar 
+$$
+\sum_{i=1}^n d_i(\theta)^2, \quad \theta = (a,b,r).
+$$
+
+Notamos ${\bf d}(\theta) = (d_1(\theta),\dots,d_n(\theta))^t$.
+Idealmente (si los datos coincidieran en un mismo círculo) tendríamos que la solución optima $\theta^*$ satisface ${\bf d}(\theta^*) = {\bf 0}$.
+
+Desarrollando el polinomio de Taylor a orden 1 tenemos que:
+$$
+{\bf d}(\theta+{\bf h}) \simeq {\bf d}(\theta)+J(\theta){\bf h}\sim {\bf 0},
+$$
+
+donde $J$ es la matriz diferencial de ${\bf d}$. El método de Gauss-Newton toma una solución inicial $\theta_0$, resuelve el problema de cuadrados mínimos:
+$$
+J(\theta_0){\bf h} = -{\bf d}(\theta_0), 
+$$
+
+toma $\theta_1 = \theta_0 + {\bf h}$, e itera el procedimiento, calculando una sucesión $\theta_i$ y deteniéndose cuando se satisface algún criterio de convergencia. 
+
+::: callout
+**Ejercicio 1:** Implementar las siguientes funciones:
+1. una función que retorne el vector ${\bf d}(\theta)$, 
+2. una función que retorne el valor de $F$,
+3. una función que calcule la matriz diferencial $J$ de ${\bf d}$ dependiendo del $\theta_0$.
+:::
+
+::: callout
+**Ejercicio 2:** Implementar una función `ajuste_geom` que implemente el algoritmo de Gauss-Newton descripto, resolviendo 
+$$
+J(\theta_0){\bf h} = -{\bf d}(\theta_0), 
+$$
+
+1. Como se hizo en el ajuste geométrio. 
+   
+2. A través de la descomposición en valores singulares de $J$, $J=U\Sigma V^t$. Algo que se puede hacer es que la función imprima también un mensaje si el problema está mal condicionado, es decir si $J$ tiene un número de condición muy grande.
+
+*Sugerencia:* El proceso iterativo debe comenzar con algun $\theta_0$. Este puede tomarlo como la solución del algebraico.
+:::
+
+::: callout-tip
+Para resolver usando `svd` pueden utilizar el comando `svd` del paquete `LinearAlgebra` y luego usar la pseudo inversa $A^{\dagger}=V\Sigma^{-1}U^t$.
+:::
+
+### Datos singulares
+
+Cuando la matriz $J$ está cerca de una matriz de rango menor que 3 el error numérico del método anterior crece, haciendo que la solución resulte poco confiable. Es importante remarcar que este inconveniente es intrínseco a la matriz $J$ y, más esencialmente, a los datos ${\bf x}$ e ${\bf y}$. Para resolver este inconveniente Levenberg y Marquardt propusieron una modificación del algoritmo de Gauss-Newton.
+
+#### Resolviendo el sistema como cuadrados mínimos
+
+Si $A = J^tJ$, aunque esto es una matriz simetrica semi definida positiva, podría estar "cerca" de una matriz singular. La idea será tomar un parametro $\lambda$ tal que $A+\lambda I$ se "aleje" de la matriz singular. Si $\lambda_1,...,\lambda_n$ son los autovalores de $A$, entonces $\lambda_1+\lambda,...,\lambda_n+\lambda$ son autovalres de $A+\lambda I$. Además $A+\lambda I$ tiene los mismos autovectores que $A$. 
+
+```{.julia}
+A,epsilon>0,alpha>0
+\lambda = \min\{\lambda: \lambda autovalor de A\}
+if \lambda\leq epsilon
+    A = A + alpha I
+```
+¿Cómo se podría ir tomando el valor de $\alpha$?
+
+#### Resolviendo con SVD
+
+Se elige un parámetro $\lambda$ y se resuelve el sistema reemplazando:
+$$
+\Sigma = \Sigma + \lambda I.
+$$
+
+De este modo se "corrige" $\Sigma$ para salvar su (casi) singularidad. Cuanto mayor es el valor de $\lambda$, más se parece el vector ${\bf h}$ resultante al dado por el método del gradiente; cuanto menor es $\lambda$, más parecida es la iteración a la correspondiente al método de Gauss-Newton puro. La elección de $\lambda$ no resulta en absoluto trivial. Marquardt sugirió una mecánica iterativa, que actualiza el valor de $\lambda$ en cada paso, según el comportamiento de $J$: 
+
+Se toma un valor inicial $\lambda_0$ (por ejemplo $\lambda_0 = 1$) y un parámetro de correción $\alpha>1$. Se considera la solución inicial $\theta=(a,b,r)$ y se calculan los valores $\theta'=(a',b',r')$ y $\theta''=(a'',b'',r'')$, correspondientes a realizar una iteración del método con $\lambda = \lambda_0$ y con $\lambda = \frac{\lambda_0}{\alpha}$, respectivamente. Para todas estas soluciones se computa el valor del funcional $F$. Si tanto $\theta'$ como $\theta''$ arrojan valores de $F$ mayores que el correspondiente a $\theta$, entonces se agranda $\lambda$ iterando: $\lambda = \alpha\lambda$ hasta hallar un $\lambda$ que mejore el valor del funcional. Si, en cambio, $F(\theta'')<F(\theta)$, se actualiza $\lambda = \frac{\lambda}{\alpha}$, mientras que si $F(\theta')<F(\theta)$, se conserva el valor de $\lambda$ actual. 
+
+
+::: callout
+**Ejercicio 3:** Implementar una función `levenber_marquardt` que ejecute el método de Gauss-Newton con las variantes de Levenberg-Marquardt descriptas anteriormente.
+:::

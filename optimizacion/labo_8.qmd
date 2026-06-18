@@ -1,0 +1,129 @@
+# Heurísticas {.unnumbered}
+
+Una heurística es una técnica para abordar un problema que consiste en un método práctico que no garantiza ser óptimo o perfecto, pero es suficiente para alcanzar metas inmediatas. El objetivo es encontrar una buena solución en un tiempo razonable. Generalmente, no hay garantía de que esta solución sea óptima, pero puede resultar útil para resolver el problema en cuestión.
+
+Muchos de los problemas que surgen naturalmente en el mundo real, en especial los problemas de optimización, son al menos NP-Completos. Esto quiere decir que son problemas para los cuales todavía no existe un algoritmo que los resuelva eficientemente. Generalmente, se utilizan heurísticas para hallar buenas soluciones a esos problemas. Por buenas soluciones, entendemos que, si bien no podemos asegurar que sean óptimas, resultan beneficiosas al aplicarse a los problemas que desean resolverse.
+
+Veamos algunos métodos en el contexto de minimizar una función $f$ en $\mathbb{R}^n$. Para estos métodos debemos definir un conjunto de vecinos de un punto $(x,y)$, como por ejemplo 
+
+$$
+N(x,y) = \{(x+h,y),(x-h,y),(x,y+h),(x,y-h)\}
+$$
+
+donde $h$ es un paso dado.
+
+Otra manera es, en cada paso, avanzar en una dirección aleatoria extraída a partir de alguna distribución, por ejemplo $N(0,\sigma^2)$ con un valor de $\sigma$ adecuado. Esto puede ahorrarnos tener que discretizar el espacio si estamos trabajando con problemas en variables continuas.
+
+Así, por ejemplo, si el punto actual es $(x,y)$ el próximo punto será $(x+α,y+β)$, dónde $α$ y $β$ provienen de una distribución $N(0,0.1^2)$.
+
+## Paseo Aleatorio
+
+Consiste en recorrer el dominio de la función objetivo de manera aleatoria, guardando el punto con la mejor calidad hasta el momento. Hay varias maneras de implementar un paseo aleatorio, dependiendo de cómo uno recorre el espacio. Una de ellas es discretizar el espacio (por ejemplo, con una cuadrícula), y nos movemos de un punto a alguno de sus vecinos con cierta probabilidad.
+
+::: {.callout-note}
+```{.julia}
+mejor_x = pto_inicial
+while k<K_max
+    x = pto al azar cercano a mejor_x
+    if f(x)<f(mejor_x)
+        mejor_x = x
+    end
+end
+return mejor_x
+```
+:::
+
+## Búsqueda local
+
+Dado un punto inicial, consiste en encontrar un vecino que mejore el valor de la función objetivo. 
+
+::: {.callout-note}
+```{.julia}
+mejor_x = pto_inicial
+while k<K_max
+    x = vecino de mejor_x
+    if criterio de aceptacion de x
+        mejor_x = x
+    end
+end
+return mejor_x
+```
+:::
+
+### Hill climbing
+
+Es uno de los métodos mas básicos de búsqueda local: consiste en recorrer los vecinos de un punto hasta encontrar alguno que mejore el valor de la función objetivo. Se puede establecer un orden para recorrer el vecindario de un punto o se lo puede hacer de manera aleatoria. Recorrer los vecinos ordenadamente da lugar al *Simple Hill Climbing*, mientras que hacerlo de forma aleatoria da lugar al *Stochastic Hill Climbing*.
+
+Es un algoritmo greedy: toma automáticamente el primer vecino que mejore la función objetivo, sin considerar movimientos futuros o al resto del vecindario que quedó sin recorrer.
+
+Generalmente se habla de este método en el contexto de un problema de maximización (de ahí su nombre) pero es perfectamente aplicable a problemas de minimización.
+
+::: {.callout-note}
+```{.julia}
+mejor_x = pto_inicial
+N = vecindad de mejor_X
+while k<K_max
+    if N es no vacio
+        v = vecino de mejor_X
+        if f(v)<f(mejor_x)
+            merjor_x = v
+            N = vecindad de mejor_x
+            k = k+1
+        else
+        N = N - {v}
+        end
+    else
+        PARAR
+    end
+end
+return mejor_x
+```
+:::
+
+Desventajas:
+
+- No tiene en cuenta movimientos futuros
+- Se queda atascado en mesetas o, peor aún, en lomos
+- El resultado depende del punto inicial
+- Método de optimización local
+
+Algunas mejoras:
+
+- Búsqueda tabú: se agrega un registro de los últimos n puntos visitados y se prohíbe volver a visitarlos hasta que salgan de la lista, con el fin de evitar caminar en círculos. La contrapartida es que se consume más memoria y más tiempo de cómputo.
+- Dinámico: La idea es adaptar el tamaño del paso $h$ si se encuentra un mejor valor de la función objetivo. Por ejemplo haciendo $h = a*h$ con $a>1$. 
+- Ascenso más rápido (steepest ascent): en vez de quedarnos con el primer vecino de mejor calidad que encontremos, analizamos la calidad de todos los vecinos y nos quedamos con el mejor. Es muy similar al método de descenso por gradiente. La contrapartida es mayor tiempo de cómputo y rápida convergencia a mínimo local.
+- Random restart Hill Climbing: ejecutar Hill-Climbing sobre muchos puntos iniciales aleatorios.
+
+### Recocido Simulado (Simulated annealing)
+
+Es un método de optimización global y está motivado por la técnica del recocido del acero utilizada en la herrería: el acero es calentado a altas temperaturas para que sea maleable y su posterior enfriamiento es controlado para mejorar su fuerza y durabilidad.
+
+En este método, si un vecino mejora el valor de la función objetivo, es aceptado siempre. Sin embargo, también existe la probabilidad de aceptar a un vecino que empeore el valor de la función objetivo. Generalmente, la probabilidad de aceptación para problemas de minimización se define como: 
+
+$$
+p(v,v') = exp(\frac{f(v)-f(v')}{T})
+$$
+
+donde $T$ es la temperatura actual, $v$ es el punto actual y $v'$ un vecino con peor valor de la función objetivo. La idea es tomar un número $r$ al azar con distribución $U[0,1]$ y aceptar a $v'$ si $r<p(v,v')$
+
+Observar que si $T$ es grande, $p\sim 1$, entonces se parece a un paseo aleatorio, ya que hay alta probabilidad de permitir pasos que empeoren la función objetivo. En cambio, si $T\to 0$ , $p\sim 0$ y se asemeja a Hill-Climbing. La idea es comenzar con un $T$ grande e ir disminuyéndolo luego de un número de iteraciones. $T$ simboliza la temperatura en el proceso de recocido, por lo que no hay que hacerla bajar ni muy rápido, ni muy lento.
+
+::: {.callout-note}
+```{.julia}
+T = temperatura_inicial
+x = pto_inicial
+mejor_x = x
+while T>T_min
+    v = vecino de x
+    T = a*T (con a<1)
+    if f(v)<f(x)
+        x = v
+        if f(x) >= f(mejor_x)
+            mejor_x = x
+    elseif exp((f(x)-f(v))/T)>r
+        x = v 
+    end
+end
+return mejor_x
+```
+:::

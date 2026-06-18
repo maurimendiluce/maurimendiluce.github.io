@@ -1,7 +1,27 @@
 # Clase 1 {.unnumbered}
 
 ::: callout
-## Exercise: Character or Number?
+## Ejercicio 1: 
 
-Can you spot the difference between a character string and a number? Here's a test: Which of these are character strings and which are numbers? `1`, `"1"`, `"one"`.
+  (a) Demostrar que si $x^*$ es un mínimo local estricto no singular de una función $f: \mathbb{R}^n \to \mathbb{R}$ dos veces continuamente diferenciable, entonces $x^*$ es un punto estacionario aislado; es decir, existe una bola centrada en $x^*$ tal que $x^*$ es el único punto estacionario de $f$ dentro de esa bola. 
+  (b) Utilizar la siguiente función de ejemplo $f: \mathbb{R} \to \mathbb{R}$ para demostrar que esto no tiene por qué ser cierto si $x^*$ es un mínimo local estricto singular:
+  $$
+  f(x) = 
+\begin{cases} 
+x^2 \left(\sqrt{2} - \sin \left(\frac{4\pi}{3} - \sqrt{3} \ln(x^2) \right) \right) & \text{si } x \neq 0, \\
+0 & \text{si } x = 0.
+\end{cases}
+  $$
+:::
+
+**Solución:**
+
+---
+
+::: callout
+## Ejercicio 2: 
+
+Un mínimo local sin restricciones $x^*$ de una función $f$ se dice *localmente estable* si existe $\delta >0$ tal que cualquier sucesión $\{x^k \}$ con
+$$f(x^k) \to f(x^*), \quad \| x^k - x^* \| < \delta, \quad \forall k \ge 0 $$
+converge a $x^*$. Muestrar que $x^*$ es localmente estable si y solo si $x^*$ es un mínimo local estricto, es decir, si existe un entorno $U$ de $x^*$ tal que para todo $x \in U$, con $x\ne x^*$, se tiene $f(x^*) < f(x)$.
 :::

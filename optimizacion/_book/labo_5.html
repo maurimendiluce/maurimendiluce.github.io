@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.35">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Clase 1 – Optimización</title>
+<title>Perfil de Desempeño – Optimización</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,18 +33,18 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro_julia.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./labo_6.html" rel="next">
+<link href="./labo_4.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d0e771311778b285ff17373dd916785d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -114,7 +114,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./clase_1.html">Clases prácticas</a></li><li class="breadcrumb-item"><a href="./clase_1.html">Clase 1</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_julia.html">Laboratorio</a></li><li class="breadcrumb-item"><a href="./labo_5.html">Perfil de Desempeño</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -159,7 +159,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./clase_1.html" class="sidebar-item-text sidebar-link active">
+  <a href="./clase_1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Clase 1</span></a>
   </div>
 </li>
@@ -204,6 +204,18 @@ window.Quarto = {
  <span class="menu-text">Redes Neuronales: Aplicación de Descenso por Gradiente</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./labo_5.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Perfil de Desempeño</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./labo_6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modificación Levenberg-Marquardt para método de Newton</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -223,9 +235,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./clase_1.html">Clases prácticas</a></li><li class="breadcrumb-item"><a href="./clase_1.html">Clase 1</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_julia.html">Laboratorio</a></li><li class="breadcrumb-item"><a href="./labo_5.html">Perfil de Desempeño</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Clase 1</h1>
+<h1 class="title">Perfil de Desempeño</h1>
 </div>
 
 
@@ -242,43 +254,14 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">None</span>Ejercicio 1:
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="a">
-<li>Demostrar que si <span class="math inline">\(x^*\)</span> es un mínimo local estricto no singular de una función <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}\)</span> dos veces continuamente diferenciable, entonces <span class="math inline">\(x^*\)</span> es un punto estacionario aislado; es decir, existe una bola centrada en <span class="math inline">\(x^*\)</span> tal que <span class="math inline">\(x^*\)</span> es el único punto estacionario de <span class="math inline">\(f\)</span> dentro de esa bola.</li>
-<li>Utilizar la siguiente función de ejemplo <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span> para demostrar que esto no tiene por qué ser cierto si <span class="math inline">\(x^*\)</span> es un mínimo local estricto singular: <span class="math display">\[
-  f(x) =
-\begin{cases}
-x^2 \left(\sqrt{2} - \sin \left(\frac{4\pi}{3} - \sqrt{3} \ln(x^2) \right) \right) &amp; \text{si } x \neq 0, \\
-0 &amp; \text{si } x = 0.
-\end{cases}
-  \]</span></li>
-</ol>
-</div>
-</div>
-<p><strong>Solución:</strong></p>
-<hr>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">None</span>Ejercicio 2:
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Un mínimo local sin restricciones <span class="math inline">\(x^*\)</span> de una función <span class="math inline">\(f\)</span> se dice <em>localmente estable</em> si existe <span class="math inline">\(\delta &gt;0\)</span> tal que cualquier sucesión <span class="math inline">\(\{x^k \}\)</span> con <span class="math display">\[f(x^k) \to f(x^*), \quad \| x^k - x^* \| &lt; \delta, \quad \forall k \ge 0 \]</span> converge a <span class="math inline">\(x^*\)</span>. Muestrar que <span class="math inline">\(x^*\)</span> es localmente estable si y solo si <span class="math inline">\(x^*\)</span> es un mínimo local estricto, es decir, si existe un entorno <span class="math inline">\(U\)</span> de <span class="math inline">\(x^*\)</span> tal que para todo <span class="math inline">\(x \in U\)</span>, con <span class="math inline">\(x\ne x^*\)</span>, se tiene <span class="math inline">\(f(x^*) &lt; f(x)\)</span>.</p>
-</div>
-</div>
+<p>Diseñado por Dolan y Moré en 2001, es una herramienta que se emplea para comparar la aptitud de distintos algoritmos para resolver un conjunto de problemas.</p>
+<p>Dados un conjunto de problemas <span class="math inline">\(P\)</span> y un conjunto de algoritmos <span class="math inline">\(S\)</span>, definimos como <span class="math inline">\(c_{s,p}\)</span> el costo de resolver el problema <span class="math inline">\(p\in P\)</span> con el algoritmo <span class="math inline">\(s\in S\)</span>. Si el algoritmo <span class="math inline">\(s\)</span> no puede resolver el problema <span class="math inline">\(p\)</span>, se define <span class="math inline">\(c_{s,p}=c_{max}\)</span> con <span class="math inline">\(c_{max}\in\mathbb{R}\)</span> un valor adecuado de manera tal que: <span class="math display">\[c_{s,p}=c_{max} \Leftrightarrow \text{el algoritmo $s$ no resuelve el problema $p$}\]</span> Se asume que al menos un algoritmo resuelve el problema <span class="math inline">\(p\)</span>. Se define la tasa de desempeño relativa como: <span class="math display">\[r_{s,p}= \frac{c_{s,p}}{\min \{c_{j,p}\colon j\in S\}}\]</span></p>
+<p>Observar que <span class="math inline">\(r_{s,p}\geq 1\)</span> y, si <span class="math inline">\(r_{s,p}=1\)</span>, entonces el algoritmo <span class="math inline">\(s\)</span> es uno de los mejores (o el mejor) para resolver el problema <span class="math inline">\(p\)</span>. Mientras mayor sea <span class="math inline">\(r_{s,p}\)</span>, peor es el desempeño de <span class="math inline">\(s\)</span> al resolver <span class="math inline">\(p\)</span>. Finalmente, se define la función de desempeño <span class="math inline">\(\rho_s:[1,\infty)\to[0,1]\)</span> para el algoritmo <span class="math inline">\(s\)</span> como: <span class="math display">\[\rho_s(\tau) = \frac{\#\{p\in P\colon r_{s,p}\leq \tau\}}{\# P}\]</span></p>
+<p>Así, <span class="math inline">\(\rho_s(\tau)\)</span> es el porcentaje de problemas que el algoritmo <span class="math inline">\(s\)</span> resuelve con hasta <span class="math inline">\(\tau\)</span> veces el costo del algoritmo más eficiente. Por ejemplo, <span class="math inline">\(\rho_s(1)\)</span> es la proporción de problemas que el algoritmo <span class="math inline">\(s\)</span> resuelve con el menor costo.</p>
+<p>Si se define: <span class="math display">\[r_{max} = \underset{s\in S, p\in P\;\colon\; c_{s,p}&lt;M}{\max} r_{s,p}\]</span><br>
+se tiene que <span class="math inline">\(\rho_s(r_{max})\)</span> es el número de problemas resueltos por el algoritmo <span class="math inline">\(s\)</span>. El valor <span class="math inline">\(\rho_s(1)\)</span> se denomina la eficiencia de <span class="math inline">\(s\)</span> y <span class="math inline">\(\rho_s(r_{max})\)</span> es su robustez.</p>
+<p>La definición del costo está relacionada a la medida de desempeño que se quiera estudiar. Se puede considerar como <strong>costo</strong> al <strong>tiempo que necesita el algoritmo para resolver el problema, a la cantidad de iteraciones, a la cantidad de veces que es evaluada la función objetivo</strong>, etc.</p>
+<p>Para analizar el perfil de desempeño se suelen graficar en conjunto las funciones <span class="math inline">\(\rho_s\)</span> para cada <span class="math inline">\(s\in S\)</span>.</p>
 
 
 
@@ -685,13 +668,13 @@ x^2 \left(\sqrt{2} - \sin \left(\frac{4\pi}{3} - \sqrt{3} \ln(x^2) \right) \righ
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Introducción">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introducción</span>
+      <a href="./labo_4.html" class="pagination-link" aria-label="Redes Neuronales: Aplicación de Descenso por Gradiente">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Redes Neuronales: Aplicación de Descenso por Gradiente</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro_julia.html" class="pagination-link" aria-label="Introducción a Julia">
-        <span class="nav-page-text">Introducción a Julia</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./labo_6.html" class="pagination-link" aria-label="Modificación Levenberg-Marquardt para método de Newton">
+        <span class="nav-page-text">Modificación Levenberg-Marquardt para método de Newton</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

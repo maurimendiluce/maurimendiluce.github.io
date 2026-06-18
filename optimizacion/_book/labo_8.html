@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Clase 1 – Optimización</title>
+<title>Heurísticas – Optimización</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -33,8 +68,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro_julia.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./labo_7.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -114,7 +149,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./clase_1.html">Clases prácticas</a></li><li class="breadcrumb-item"><a href="./clase_1.html">Clase 1</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_julia.html">Laboratorio</a></li><li class="breadcrumb-item"><a href="./labo_8.html">Heurísticas</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -159,7 +194,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./clase_1.html" class="sidebar-item-text sidebar-link active">
+  <a href="./clase_1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Clase 1</span></a>
   </div>
 </li>
@@ -204,6 +239,30 @@ window.Quarto = {
  <span class="menu-text">Redes Neuronales: Aplicación de Descenso por Gradiente</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./labo_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Perfil de Desempeño</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./labo_6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modificación Levenberg-Marquardt para método de Newton</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./labo_7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optimización con restricciones: Método de penalidad</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./labo_8.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Heurísticas</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -217,15 +276,26 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#paseo-aleatorio" id="toc-paseo-aleatorio" class="nav-link active" data-scroll-target="#paseo-aleatorio">Paseo Aleatorio</a></li>
+  <li><a href="#búsqueda-local" id="toc-búsqueda-local" class="nav-link" data-scroll-target="#búsqueda-local">Búsqueda local</a>
+  <ul class="collapse">
+  <li><a href="#hill-climbing" id="toc-hill-climbing" class="nav-link" data-scroll-target="#hill-climbing">Hill climbing</a></li>
+  <li><a href="#recocido-simulado-simulated-annealing" id="toc-recocido-simulado-simulated-annealing" class="nav-link" data-scroll-target="#recocido-simulado-simulated-annealing">Recocido Simulado (Simulated annealing)</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./clase_1.html">Clases prácticas</a></li><li class="breadcrumb-item"><a href="./clase_1.html">Clase 1</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_julia.html">Laboratorio</a></li><li class="breadcrumb-item"><a href="./labo_8.html">Heurísticas</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Clase 1</h1>
+<h1 class="title">Heurísticas</h1>
 </div>
 
 
@@ -242,45 +312,151 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<p>Una heurística es una técnica para abordar un problema que consiste en un método práctico que no garantiza ser óptimo o perfecto, pero es suficiente para alcanzar metas inmediatas. El objetivo es encontrar una buena solución en un tiempo razonable. Generalmente, no hay garantía de que esta solución sea óptima, pero puede resultar útil para resolver el problema en cuestión.</p>
+<p>Muchos de los problemas que surgen naturalmente en el mundo real, en especial los problemas de optimización, son al menos NP-Completos. Esto quiere decir que son problemas para los cuales todavía no existe un algoritmo que los resuelva eficientemente. Generalmente, se utilizan heurísticas para hallar buenas soluciones a esos problemas. Por buenas soluciones, entendemos que, si bien no podemos asegurar que sean óptimas, resultan beneficiosas al aplicarse a los problemas que desean resolverse.</p>
+<p>Veamos algunos métodos en el contexto de minimizar una función <span class="math inline">\(f\)</span> en <span class="math inline">\(\mathbb{R}^n\)</span>. Para estos métodos debemos definir un conjunto de vecinos de un punto <span class="math inline">\((x,y)\)</span>, como por ejemplo</p>
+<p><span class="math display">\[
+N(x,y) = \{(x+h,y),(x-h,y),(x,y+h),(x,y-h)\}
+\]</span></p>
+<p>donde <span class="math inline">\(h\)</span> es un paso dado.</p>
+<p>Otra manera es, en cada paso, avanzar en una dirección aleatoria extraída a partir de alguna distribución, por ejemplo <span class="math inline">\(N(0,\sigma^2)\)</span> con un valor de <span class="math inline">\(\sigma\)</span> adecuado. Esto puede ahorrarnos tener que discretizar el espacio si estamos trabajando con problemas en variables continuas.</p>
+<p>Así, por ejemplo, si el punto actual es <span class="math inline">\((x,y)\)</span> el próximo punto será <span class="math inline">\((x+α,y+β)\)</span>, dónde <span class="math inline">\(α\)</span> y <span class="math inline">\(β\)</span> provienen de una distribución <span class="math inline">\(N(0,0.1^2)\)</span>.</p>
+<section id="paseo-aleatorio" class="level2">
+<h2 class="anchored" data-anchor-id="paseo-aleatorio">Paseo Aleatorio</h2>
+<p>Consiste en recorrer el dominio de la función objetivo de manera aleatoria, guardando el punto con la mejor calidad hasta el momento. Hay varias maneras de implementar un paseo aleatorio, dependiendo de cómo uno recorre el espacio. Una de ellas es discretizar el espacio (por ejemplo, con una cuadrícula), y nos movemos de un punto a alguno de sus vecinos con cierta probabilidad.</p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">None</span>Ejercicio 1:
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ol type="a">
-<li>Demostrar que si <span class="math inline">\(x^*\)</span> es un mínimo local estricto no singular de una función <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}\)</span> dos veces continuamente diferenciable, entonces <span class="math inline">\(x^*\)</span> es un punto estacionario aislado; es decir, existe una bola centrada en <span class="math inline">\(x^*\)</span> tal que <span class="math inline">\(x^*\)</span> es el único punto estacionario de <span class="math inline">\(f\)</span> dentro de esa bola.</li>
-<li>Utilizar la siguiente función de ejemplo <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span> para demostrar que esto no tiene por qué ser cierto si <span class="math inline">\(x^*\)</span> es un mínimo local estricto singular: <span class="math display">\[
-  f(x) =
-\begin{cases}
-x^2 \left(\sqrt{2} - \sin \left(\frac{4\pi}{3} - \sqrt{3} \ln(x^2) \right) \right) &amp; \text{si } x \neq 0, \\
-0 &amp; \text{si } x = 0.
-\end{cases}
-  \]</span></li>
-</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mejor_x <span class="op">=</span> pto_inicial</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> k<span class="op">&lt;</span>K_max</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> pto al azar cercano a mejor_x</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">f</span>(x)<span class="fu">&lt;f</span>(mejor_x)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        mejor_x <span class="op">=</span> x</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> mejor_x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p><strong>Solución:</strong></p>
-<hr>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
+</section>
+<section id="búsqueda-local" class="level2">
+<h2 class="anchored" data-anchor-id="búsqueda-local">Búsqueda local</h2>
+<p>Dado un punto inicial, consiste en encontrar un vecino que mejore el valor de la función objetivo.</p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">None</span>Ejercicio 2:
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Un mínimo local sin restricciones <span class="math inline">\(x^*\)</span> de una función <span class="math inline">\(f\)</span> se dice <em>localmente estable</em> si existe <span class="math inline">\(\delta &gt;0\)</span> tal que cualquier sucesión <span class="math inline">\(\{x^k \}\)</span> con <span class="math display">\[f(x^k) \to f(x^*), \quad \| x^k - x^* \| &lt; \delta, \quad \forall k \ge 0 \]</span> converge a <span class="math inline">\(x^*\)</span>. Muestrar que <span class="math inline">\(x^*\)</span> es localmente estable si y solo si <span class="math inline">\(x^*\)</span> es un mínimo local estricto, es decir, si existe un entorno <span class="math inline">\(U\)</span> de <span class="math inline">\(x^*\)</span> tal que para todo <span class="math inline">\(x \in U\)</span>, con <span class="math inline">\(x\ne x^*\)</span>, se tiene <span class="math inline">\(f(x^*) &lt; f(x)\)</span>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mejor_x <span class="op">=</span> pto_inicial</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> k<span class="op">&lt;</span>K_max</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> vecino de mejor_x</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> criterio de aceptacion de x</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        mejor_x <span class="op">=</span> x</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> mejor_x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<section id="hill-climbing" class="level3">
+<h3 class="anchored" data-anchor-id="hill-climbing">Hill climbing</h3>
+<p>Es uno de los métodos mas básicos de búsqueda local: consiste en recorrer los vecinos de un punto hasta encontrar alguno que mejore el valor de la función objetivo. Se puede establecer un orden para recorrer el vecindario de un punto o se lo puede hacer de manera aleatoria. Recorrer los vecinos ordenadamente da lugar al <em>Simple Hill Climbing</em>, mientras que hacerlo de forma aleatoria da lugar al <em>Stochastic Hill Climbing</em>.</p>
+<p>Es un algoritmo greedy: toma automáticamente el primer vecino que mejore la función objetivo, sin considerar movimientos futuros o al resto del vecindario que quedó sin recorrer.</p>
+<p>Generalmente se habla de este método en el contexto de un problema de maximización (de ahí su nombre) pero es perfectamente aplicable a problemas de minimización.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mejor_x <span class="op">=</span> pto_inicial</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> vecindad de mejor_X</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> k<span class="op">&lt;</span>K_max</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> N es no vacio</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        v <span class="op">=</span> vecino de mejor_X</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="fu">f</span>(v)<span class="fu">&lt;f</span>(mejor_x)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            merjor_x <span class="op">=</span> v</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            N <span class="op">=</span> vecindad de mejor_x</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            k <span class="op">=</span> k<span class="op">+</span><span class="fl">1</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        N <span class="op">=</span> N <span class="op">-</span> {v}</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        PARAR</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> mejor_x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Desventajas:</p>
+<ul>
+<li>No tiene en cuenta movimientos futuros</li>
+<li>Se queda atascado en mesetas o, peor aún, en lomos</li>
+<li>El resultado depende del punto inicial</li>
+<li>Método de optimización local</li>
+</ul>
+<p>Algunas mejoras:</p>
+<ul>
+<li>Búsqueda tabú: se agrega un registro de los últimos n puntos visitados y se prohíbe volver a visitarlos hasta que salgan de la lista, con el fin de evitar caminar en círculos. La contrapartida es que se consume más memoria y más tiempo de cómputo.</li>
+<li>Dinámico: La idea es adaptar el tamaño del paso <span class="math inline">\(h\)</span> si se encuentra un mejor valor de la función objetivo. Por ejemplo haciendo <span class="math inline">\(h = a*h\)</span> con <span class="math inline">\(a&gt;1\)</span>.</li>
+<li>Ascenso más rápido (steepest ascent): en vez de quedarnos con el primer vecino de mejor calidad que encontremos, analizamos la calidad de todos los vecinos y nos quedamos con el mejor. Es muy similar al método de descenso por gradiente. La contrapartida es mayor tiempo de cómputo y rápida convergencia a mínimo local.</li>
+<li>Random restart Hill Climbing: ejecutar Hill-Climbing sobre muchos puntos iniciales aleatorios.</li>
+</ul>
+</section>
+<section id="recocido-simulado-simulated-annealing" class="level3">
+<h3 class="anchored" data-anchor-id="recocido-simulado-simulated-annealing">Recocido Simulado (Simulated annealing)</h3>
+<p>Es un método de optimización global y está motivado por la técnica del recocido del acero utilizada en la herrería: el acero es calentado a altas temperaturas para que sea maleable y su posterior enfriamiento es controlado para mejorar su fuerza y durabilidad.</p>
+<p>En este método, si un vecino mejora el valor de la función objetivo, es aceptado siempre. Sin embargo, también existe la probabilidad de aceptar a un vecino que empeore el valor de la función objetivo. Generalmente, la probabilidad de aceptación para problemas de minimización se define como:</p>
+<p><span class="math display">\[
+p(v,v') = exp(\frac{f(v)-f(v')}{T})
+\]</span></p>
+<p>donde <span class="math inline">\(T\)</span> es la temperatura actual, <span class="math inline">\(v\)</span> es el punto actual y <span class="math inline">\(v'\)</span> un vecino con peor valor de la función objetivo. La idea es tomar un número <span class="math inline">\(r\)</span> al azar con distribución <span class="math inline">\(U[0,1]\)</span> y aceptar a <span class="math inline">\(v'\)</span> si <span class="math inline">\(r&lt;p(v,v')\)</span></p>
+<p>Observar que si <span class="math inline">\(T\)</span> es grande, <span class="math inline">\(p\sim 1\)</span>, entonces se parece a un paseo aleatorio, ya que hay alta probabilidad de permitir pasos que empeoren la función objetivo. En cambio, si <span class="math inline">\(T\to 0\)</span> , <span class="math inline">\(p\sim 0\)</span> y se asemeja a Hill-Climbing. La idea es comenzar con un <span class="math inline">\(T\)</span> grande e ir disminuyéndolo luego de un número de iteraciones. <span class="math inline">\(T\)</span> simboliza la temperatura en el proceso de recocido, por lo que no hay que hacerla bajar ni muy rápido, ni muy lento.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> temperatura_inicial</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> pto_inicial</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>mejor_x <span class="op">=</span> x</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> T<span class="op">&gt;</span>T_min</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> vecino de x</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    T <span class="op">=</span> a<span class="op">*</span>T (con a<span class="op">&lt;</span><span class="fl">1</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">f</span>(v)<span class="fu">&lt;f</span>(x)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> v</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="fu">f</span>(x) <span class="op">&gt;=</span> <span class="fu">f</span>(mejor_x)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            mejor_x <span class="op">=</span> x</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elseif</span> <span class="fu">exp</span>((<span class="fu">f</span>(x)<span class="fu">-f</span>(v))<span class="op">/</span>T)<span class="op">&gt;</span>r</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> v </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> mejor_x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -685,13 +861,13 @@ x^2 \left(\sqrt{2} - \sin \left(\frac{4\pi}{3} - \sqrt{3} \ln(x^2) \right) \righ
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Introducción">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introducción</span>
+      <a href="./labo_7.html" class="pagination-link" aria-label="Optimización con restricciones: Método de penalidad">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Optimización con restricciones: Método de penalidad</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro_julia.html" class="pagination-link" aria-label="Introducción a Julia">
-        <span class="nav-page-text">Introducción a Julia</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="Bibliografía">
+        <span class="nav-page-text">Bibliografía</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

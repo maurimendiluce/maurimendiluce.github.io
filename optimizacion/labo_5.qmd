@@ -1,0 +1,22 @@
+# Perfil de Desempeño {.unnumbered}
+
+Diseñado por Dolan y Moré en 2001, es una herramienta que se emplea para comparar la aptitud de distintos algoritmos para resolver un conjunto de problemas.
+
+Dados un conjunto de problemas $P$ y un conjunto de algoritmos $S$, definimos como $c_{s,p}$ el costo de resolver el problema $p\in P$ con el algoritmo $s\in S$. Si el algoritmo $s$ no puede resolver el problema $p$, se define $c_{s,p}=c_{max}$ con  $c_{max}\in\mathbb{R}$ un valor adecuado de manera tal que:
+$$c_{s,p}=c_{max} \Leftrightarrow \text{el algoritmo $s$ no resuelve el problema $p$}$$
+Se asume que al menos un algoritmo resuelve el problema $p$. Se define la tasa de desempeño relativa como:
+$$r_{s,p}= \frac{c_{s,p}}{\min \{c_{j,p}\colon j\in S\}}$$
+
+Observar que $r_{s,p}\geq 1$ y, si $r_{s,p}=1$, entonces el algoritmo $s$ es uno de los mejores (o el mejor) para resolver el problema $p$. Mientras mayor sea $r_{s,p}$, peor es el desempeño de $s$ al resolver $p$. Finalmente, se define la función de desempeño $\rho_s:[1,\infty)\to[0,1]$ para el algoritmo $s$ como:
+$$\rho_s(\tau) = \frac{\#\{p\in P\colon r_{s,p}\leq \tau\}}{\# P}$$
+
+Así, $\rho_s(\tau)$ es el porcentaje de problemas que el algoritmo $s$ resuelve con hasta $\tau$ veces el costo del algoritmo más eficiente. Por ejemplo, $\rho_s(1)$ es la proporción de problemas que el algoritmo $s$ resuelve con el menor costo.
+
+Si se define: $$r_{max} = \underset{s\in S, p\in P\;\colon\; c_{s,p}<M}{\max} r_{s,p}$$     
+se tiene que $\rho_s(r_{max})$ es el número de problemas resueltos por el algoritmo $s$. El valor $\rho_s(1)$ se denomina la eficiencia de $s$ y $\rho_s(r_{max})$ es su robustez.
+
+ La definición del costo está relacionada a la medida de desempeño que se quiera estudiar. Se puede considerar como **costo** al **tiempo que necesita el algoritmo para resolver el problema, a la cantidad de iteraciones, a la cantidad de veces que es evaluada la función objetivo**, etc.
+ 
+Para analizar el perfil de desempeño se suelen graficar en conjunto las funciones $\rho_s$ para cada $s\in S$.
+
+

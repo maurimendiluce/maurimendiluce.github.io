@@ -1,0 +1,145 @@
+# Aproximación de gradiente y método de descenso {.unnumbered}
+
+El objetivo de un problema de optimización es minimizar o maximizar una función $f$ sobre un conjunto $X$:
+
+$$
+\min f(x)
+$$
+$$
+s.a. \quad x\in X
+$$
+
+::: callout
+**Ejercicio 1:**
+Considerar la función 
+$$
+f(x,y) = \sin(x+y)+\cos^2(x)
+$$
+en $[-3,1]\times [-2,1]$
+
+Graficar las curvas de nivel usando ```contourf```
+:::
+
+### Calculando gradientes 
+
+
+Una forma más sencilla de calcular los gradientes es usar una aproximación de diferencias finitas:
+
+$$
+f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}
+$$
+
+fijando algún $h$ y aproximando el gradiente por
+
+$$
+f'(x) \approx \frac{f(x+h)-f(x)}{h}.
+$$
+
+::: callout
+**Ejercicio 2:** Escribir una función que calcule la aproximación de $f'(x)$ mediante diferencias finitas. Las entradas son una función $f:\mathbb R\to\mathbb R$ y un punto $x\in\mathbb{R}$. Debe tener una entrada opcional $h\in\mathbb{R}$.
+:::
+
+::: {.callout-important}
+## Importante
+Este método para calcular el gradiente tiene dos desventajas:
+
+1. Es lento. Para una función de $n$ variables, necesitamos evaluarla al menos $n+1$ veces para obtener el gradiente completo.
+
+2. No es preciso, como muestra el siguiente ejemplo.
+
+Por ejemplo, considerar un punto $x = (−2, −1)$. Para $h \in [10^{-15}, 10^{-1}]$, calcular la aproximación por diferencias finitas de la derivada parcial de $f$ con respecto a la segunda variable y graficar la dependencia de esta aproximación con respecto a $h$. Incluir en el gráfico la derivada parcial exacta.
+:::
+
+::: callout
+**Ejercicio 3:** Utilizando la función del ejercicio 2, implementar una función que calcule el gradiente de una función $f$. Graficar el campo vectorial junto al gráfico de las curvas de nivel.
+*Sugerencia:*
+```{.julia}
+α = 0.25
+for x1 in xs, x2 in ys
+    x = [x1; x2]
+    x_grad = [x x.+α.*grad(x)]
+
+    plot!(x_grad[1, :], x_grad[2, :];
+        line = (:arrow, 2, :black),
+        label = "",
+    )
+end
+display(plt)
+```
+:::
+
+### Mi primer método de descenso
+
+Lo primero que vamos a intentar resolver es un problema de optimización sin restricciones. Es decir 
+$$
+\min f(x), \quad x\in\mathbb{R}^n.
+$$
+
+Dado que el gradiente es la dirección crecimiento más rápido, la idea es moverse en la dirección opuesta. Esto da lugar a lo que se conoce como algoritmo de descenso por gradiente.
+
+$$
+x_{k+1} = x_k -\alpha_k\nabla f(x_k),
+$$
+
+donde $\alpha_k>0$ se lo define como el tamaño de paso. Si esto converge, entonces $x_{k+1}$ y $x_k$ están cerca uno del otro, y por lo tanto $\nabla f(x_k)\to 0$. Esto significa que este método converge a un punto estacionario.
+
+::: callout
+**Ejercicio 4:** Implementar una función `grad_descent`, que reciba como entradas la función `f`, su gradiente, el punto de inicio `x_0` y un tamaño de paso fijo `α`, y ejecute el algoritmo de descenso por el gradiente. Su salida deben ser las primeras 100 iteraciones.
+:::
+
+::: callout
+**Ejercicio 5:**
+Utilizar la implementación del descenso de gradiente para minimizar la función:
+
+$$
+f(x)=\sin(x_1+x_2)+\cos(x_1)^2
+$$
+
+usando $x_0=(0,−1)$. Usar como tamaño de paso constante $\alpha=0.1$, $\alpha = 0.01$, $\alpha = 1$ ¿Qué observa en cada caso? 
+
+Utilizar la función `create_anim` para generar una animación de las iteraciones.
+:::
+
+::: {.callout-tip}
+```{.julia}
+using Random
+
+function create_anim(
+    f,
+    path,
+    xlims,
+    ylims,
+    file_name = joinpath(pwd(), randstring(12) * ".gif");
+    xbounds = xlims,
+    ybounds = ylims,
+    fps = 15,
+)
+    xs = range(xlims...; length = 100)
+    ys = range(ylims...; length = 100)
+    plt = contourf(xs, ys, f; color = :jet)
+
+    # add constraints if provided
+    if !(xbounds == xlims && ybounds == ylims)
+        x_rect = [xbounds[1]; xbounds[2]; xbounds[2]; xbounds[1]; xbounds[1]]
+        y_rect = [ybounds[1]; ybounds[1]; ybounds[2]; ybounds[2]; ybounds[1]]
+
+        plot!(x_rect, y_rect; line = (2, :dash, :red), label="")
+    end
+
+    # add an empty plot
+    plot!(Float64[], Float64[]; line = (4, :arrow, :black), label = "")
+
+    # extract the last plot series
+    plt_path = plt.series_list[end]
+
+    # create the animation and save it
+    anim = Animation()
+    for x in eachcol(path)
+        push!(plt_path, x[1], x[2]) # add a new point
+        frame(anim)
+    end
+    gif(anim, file_name; fps = fps, show_msg = false)
+    return nothing
+end
+```
+:::
