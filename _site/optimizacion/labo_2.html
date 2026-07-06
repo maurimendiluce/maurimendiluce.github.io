@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Cuadrados Mínimos: Ajuste de círculos – Optimización</title>
+<title>labo_2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,32 +58,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./labo_2.html" rel="next">
-<link href="./intro_julia.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-029b10fc0dc652dab2ec1ac156c1a037.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -136,193 +134,171 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_julia.html">Laboratorio</a></li><li class="breadcrumb-item"><a href="./labo_1.html">Cuadrados Mínimos: Ajuste de círculos</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../publications.html"> 
+<span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../talks.html"> 
+<span class="menu-text">Conferences and talks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">Optimización</a> 
-        <div class="sidebar-tools-main">
-    <a href="./Optimización.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
-</div>
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introducción</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Clases prácticas</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./clase_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Clase 1</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Laboratorio</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./intro_julia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introducción a Julia</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./labo_1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Cuadrados Mínimos: Ajuste de círculos</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./labo_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aproximación de gradiente y método de descenso</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./labo_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Gauss - Newton: Ajuste geométrico</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./labo_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Redes Neuronales: Aplicación de Descenso por Gradiente</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./labo_5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Perfil de Desempeño</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./labo_6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Modificación Levenberg-Marquardt para método de Newton</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./labo_7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Optimización con restricciones: Método de penalidad</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./labo_8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Heurísticas</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Bibliografía</span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#ajuste-algebraico" id="toc-ajuste-algebraico" class="nav-link active" data-scroll-target="#ajuste-algebraico">Ajuste algebraico</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_julia.html">Laboratorio</a></li><li class="breadcrumb-item"><a href="./labo_1.html">Cuadrados Mínimos: Ajuste de círculos</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Cuadrados Mínimos: Ajuste de círculos</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>El objetivo es implementar un algoritmo que ajuste conjuntos de datos con círcunferencias. Asumimos que los datos vienen dados por <span class="math inline">\({\bf x} = (x_1,...,x_n)^t\)</span> e <span class="math inline">\({\bf y} = (y_1,...,y_n)^t\)</span>.</p>
-<section id="ajuste-algebraico" class="level3">
-<h3 class="anchored" data-anchor-id="ajuste-algebraico">Ajuste algebraico</h3>
-<p>Un círculo puede definirse implíctamente con la ecuación:</p>
+<section id="aproximación-de-gradiente-y-método-de-descenso" class="level1 unnumbered">
+<h1 class="unnumbered">Aproximación de gradiente y método de descenso</h1>
+<p>El objetivo de un problema de optimización es minimizar o maximizar una función <span class="math inline">\(f\)</span> sobre un conjunto <span class="math inline">\(X\)</span>:</p>
 <p><span class="math display">\[
-\alpha (x^2 + y^2) + \beta x + \gamma y + \delta = 0.
+\min f(x)
+\]</span> <span class="math display">\[
+s.a. \quad x\in X
 \]</span></p>
-<p>Para garantizar unicidad en la escritura, asumiremos <span class="math inline">\(\alpha = 1\)</span>. Además, según veremos más adelante, resultará útil reescribir los parámetros, notando: <span class="math display">\[
-x^2+y^2 -2ax-2by -c = 0.
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Ejercicio 1:</strong> Considerar la función <span class="math display">\[
+f(x,y) = \sin(x+y)+\cos^2(x)
+\]</span> en <span class="math inline">\([-3,1]\times [-2,1]\)</span></p>
+<p>Graficar las curvas de nivel usando <code>contourf</code></p>
+</div>
+</div>
+</div>
+<section id="calculando-gradientes" class="level3">
+<h3 class="anchored" data-anchor-id="calculando-gradientes">Calculando gradientes</h3>
+<p>Una forma más sencilla de calcular los gradientes es usar una aproximación de diferencias finitas:</p>
+<p><span class="math display">\[
+f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}
 \]</span></p>
-<p>Si todos los datos cayeran sobre un círculo tendríamos que la ecuación se satisface para todo <span class="math inline">\((x_i,y_i)\)</span>. Asumiendo que esto no sucede (los datos contienen error), buscaremos valores de <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> y <span class="math inline">\(c\)</span> que minimicen: <span class="math display">\[
-\sum_i (x_i^2 + y_i^2 -2ax_i-2by_i-c)^2.
-\]</span> O, equivalentemente: <span class="math display">\[
-\min_{a,b,c} \big\|2a{\bf x} + 2b{\bf y} + c - {\bf p}\big\|,
-\]</span> donde <span class="math display">\[
-{\bf p} =\big(x_1^2+y_1^2, \dots,x_n^2+y_n^2\big)^t
+<p>fijando algún <span class="math inline">\(h\)</span> y aproximando el gradiente por</p>
+<p><span class="math display">\[
+f'(x) \approx \frac{f(x+h)-f(x)}{h}.
 \]</span></p>
-<p>Este enfoque se conoce como <em>ajuste algebraico</em> del círculo, dado que se propone ajustar los parámetros de la ecuación algebraica que lo define.</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Ejercicio 2:</strong> Escribir una función que calcule la aproximación de <span class="math inline">\(f'(x)\)</span> mediante diferencias finitas. Las entradas son una función <span class="math inline">\(f:\mathbb R\to\mathbb R\)</span> y un punto <span class="math inline">\(x\in\mathbb{R}\)</span>. Debe tener una entrada opcional <span class="math inline">\(h\in\mathbb{R}\)</span>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Este método para calcular el gradiente tiene dos desventajas:</p>
+<ol type="1">
+<li><p>Es lento. Para una función de <span class="math inline">\(n\)</span> variables, necesitamos evaluarla al menos <span class="math inline">\(n+1\)</span> veces para obtener el gradiente completo.</p></li>
+<li><p>No es preciso, como muestra el siguiente ejemplo.</p></li>
+</ol>
+<p>Por ejemplo, considerar un punto <span class="math inline">\(x = (−2, −1)\)</span>. Para <span class="math inline">\(h \in [10^{-15}, 10^{-1}]\)</span>, calcular la aproximación por diferencias finitas de la derivada parcial de <span class="math inline">\(f\)</span> con respecto a la segunda variable y graficar la dependencia de esta aproximación con respecto a <span class="math inline">\(h\)</span>. Incluir en el gráfico la derivada parcial exacta.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Ejercicio 3:</strong> Utilizando la función del ejercicio 2, implementar una función que calcule el gradiente de una función <span class="math inline">\(f\)</span>. Graficar el campo vectorial junto al gráfico de las curvas de nivel. <em>Sugerencia:</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>α <span class="op">=</span> <span class="fl">0.25</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x1 <span class="kw">in</span> xs, x2 <span class="kw">in</span> ys</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> [x1; x2]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    x_grad <span class="op">=</span> [x x<span class="op">.+</span>α<span class="op">.*</span><span class="fu">grad</span>(x)]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot!</span>(x_grad[<span class="fl">1</span>, <span class="op">:</span>], x_grad[<span class="fl">2</span>, <span class="op">:</span>];</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        line <span class="op">=</span> (<span class="op">:</span>arrow, <span class="fl">2</span>, <span class="op">:</span>black),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        label <span class="op">=</span> <span class="st">""</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(plt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mi-primer-método-de-descenso" class="level3">
+<h3 class="anchored" data-anchor-id="mi-primer-método-de-descenso">Mi primer método de descenso</h3>
+<p>Lo primero que vamos a intentar resolver es un problema de optimización sin restricciones. Es decir <span class="math display">\[
+\min f(x), \quad x\in\mathbb{R}^n.
+\]</span></p>
+<p>Dado que el gradiente es la dirección crecimiento más rápido, la idea es moverse en la dirección opuesta. Esto da lugar a lo que se conoce como algoritmo de descenso por gradiente.</p>
+<p><span class="math display">\[
+x_{k+1} = x_k -\alpha_k\nabla f(x_k),
+\]</span></p>
+<p>donde <span class="math inline">\(\alpha_k&gt;0\)</span> se lo define como el tamaño de paso. Si esto converge, entonces <span class="math inline">\(x_{k+1}\)</span> y <span class="math inline">\(x_k\)</span> están cerca uno del otro, y por lo tanto <span class="math inline">\(\nabla f(x_k)\to 0\)</span>. Esto significa que este método converge a un punto estacionario.</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Ejercicio 4:</strong> Implementar una función <code>grad_descent</code>, que reciba como entradas la función <code>f</code>, su gradiente, el punto de inicio <code>x_0</code> y un tamaño de paso fijo <code>α</code>, y ejecute el algoritmo de descenso por el gradiente. Su salida deben ser las primeras 100 iteraciones.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Ejercicio 5:</strong> Utilizar la implementación del descenso de gradiente para minimizar la función:</p>
+<p><span class="math display">\[
+f(x)=\sin(x_1+x_2)+\cos(x_1)^2
+\]</span></p>
+<p>usando <span class="math inline">\(x_0=(0,−1)\)</span>. Usar como tamaño de paso constante <span class="math inline">\(\alpha=0.1\)</span>, <span class="math inline">\(\alpha = 0.01\)</span>, <span class="math inline">\(\alpha = 1\)</span> ¿Qué observa en cada caso?</p>
+<p>Utilizar la función <code>create_anim</code> para generar una animación de las iteraciones.</p>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -333,37 +309,50 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>En primer lugar debemos poder leer los datos y graficarlos. Los datos a los que debemos calcular el ajuste se encuentran alojados en un archivo <a href="https://drive.google.com/file/d/1iycLoLOakK5r5THxMyaKon7IgunSiZxV/view?usp=sharing"><code>.mat</code></a> que contiene 10 conjuntos de datos (<em>“datos_1”</em>, <em>“datos_2”</em>, etc..). La librearia <code>MAT</code> nos ayuda a leer estos archivos.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MAT</span>, <span class="bu">LinearAlgebra</span>, <span class="bu">Plots</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>file <span class="op">=</span> <span class="fu">matopen</span>(<span class="st">"datos.mat"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> <span class="fu">read</span>(file, <span class="st">"datos_1"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter</span>(datos[<span class="op">:</span>,<span class="fl">1</span>],datos[<span class="op">:</span>,<span class="fl">2</span>],label<span class="op">=</span><span class="st">"datos"</span>,xlabel<span class="op">=</span><span class="st">"x"</span>,ylabel<span class="op">=</span><span class="st">"y"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Ejercicio 1:</strong> Construir una función <code>def_problem</code> que tome como argumento los datos y devuelva la matriz del ajuste junto con el vector del lado derecho teniendo en cuenta que lo que queremos es que estos se ajusten a una circunferencia.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Ejercicio 2:</strong> Implementar una función <code>ajuste_alg</code> que reciba como argumento los datos y resuelva el problema resolviendo un problema de cuadrados mínimos (por ejemplo, <em>ecuaciones normales</em>, <em>descomposición QR</em>, etc..). La misma función debe graficar el ajuste junto con los datos.</p>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Random</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">create_anim</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    f,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    path,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    xlims,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    ylims,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    file_name <span class="op">=</span> <span class="fu">joinpath</span>(<span class="fu">pwd</span>(), <span class="fu">randstring</span>(<span class="fl">12</span>) <span class="op">*</span> <span class="st">".gif"</span>);</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    xbounds <span class="op">=</span> xlims,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    ybounds <span class="op">=</span> ylims,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    fps <span class="op">=</span> <span class="fl">15</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    xs <span class="op">=</span> <span class="fu">range</span>(xlims<span class="op">...</span>; length <span class="op">=</span> <span class="fl">100</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    ys <span class="op">=</span> <span class="fu">range</span>(ylims<span class="op">...</span>; length <span class="op">=</span> <span class="fl">100</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    plt <span class="op">=</span> <span class="fu">contourf</span>(xs, ys, f; color <span class="op">=</span> <span class="op">:</span>jet)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add constraints if provided</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> !(xbounds <span class="op">==</span> xlims <span class="op">&amp;&amp;</span> ybounds <span class="op">==</span> ylims)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        x_rect <span class="op">=</span> [xbounds[<span class="fl">1</span>]; xbounds[<span class="fl">2</span>]; xbounds[<span class="fl">2</span>]; xbounds[<span class="fl">1</span>]; xbounds[<span class="fl">1</span>]]</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        y_rect <span class="op">=</span> [ybounds[<span class="fl">1</span>]; ybounds[<span class="fl">1</span>]; ybounds[<span class="fl">2</span>]; ybounds[<span class="fl">2</span>]; ybounds[<span class="fl">1</span>]]</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="fu">plot!</span>(x_rect, y_rect; line <span class="op">=</span> (<span class="fl">2</span>, <span class="op">:</span>dash, <span class="op">:</span>red), label<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add an empty plot</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot!</span>(<span class="dt">Float64</span>[], <span class="dt">Float64</span>[]; line <span class="op">=</span> (<span class="fl">4</span>, <span class="op">:</span>arrow, <span class="op">:</span>black), label <span class="op">=</span> <span class="st">""</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># extract the last plot series</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    plt_path <span class="op">=</span> plt.series_list[<span class="kw">end</span>]</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># create the animation and save it</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    anim <span class="op">=</span> <span class="fu">Animation</span>()</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> <span class="fu">eachcol</span>(path)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        <span class="fu">push!</span>(plt_path, x[<span class="fl">1</span>], x[<span class="fl">2</span>]) <span class="co"># add a new point</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        <span class="fu">frame</span>(anim)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gif</span>(anim, file_name; fps <span class="op">=</span> fps, show_msg <span class="op">=</span> <span class="cn">false</span>)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -767,32 +756,7 @@ Tip
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./intro_julia.html" class="pagination-link" aria-label="Introducción a Julia">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introducción a Julia</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./labo_2.html" class="pagination-link" aria-label="Aproximación de gradiente y método de descenso">
-        <span class="nav-page-text">Aproximación de gradiente y método de descenso</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>2026, Mauricio Mendiluce</p>
-</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    </div>
-    <div class="nav-footer-right">
-      &nbsp;
-    </div>
-  </div>
-</footer>
 
 
 

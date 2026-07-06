@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Modificación Levenberg-Marquardt para método de Newton – Optimización</title>
+<title>labo_5</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,70 +20,33 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./labo_7.html" rel="next">
-<link href="./labo_5.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-029b10fc0dc652dab2ec1ac156c1a037.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -136,221 +99,68 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_julia.html">Laboratorio</a></li><li class="breadcrumb-item"><a href="./labo_6.html">Modificación Levenberg-Marquardt para método de Newton</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../publications.html"> 
+<span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../talks.html"> 
+<span class="menu-text">Conferences and talks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">Optimización</a> 
-        <div class="sidebar-tools-main">
-    <a href="./Optimización.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
-</div>
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introducción</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Clases prácticas</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./clase_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Clase 1</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Laboratorio</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./intro_julia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introducción a Julia</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./labo_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Cuadrados Mínimos: Ajuste de círculos</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./labo_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aproximación de gradiente y método de descenso</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./labo_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Gauss - Newton: Ajuste geométrico</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./labo_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Redes Neuronales: Aplicación de Descenso por Gradiente</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./labo_5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Perfil de Desempeño</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./labo_6.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Modificación Levenberg-Marquardt para método de Newton</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./labo_7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Optimización con restricciones: Método de penalidad</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./labo_8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Heurísticas</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Bibliografía</span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro_julia.html">Laboratorio</a></li><li class="breadcrumb-item"><a href="./labo_6.html">Modificación Levenberg-Marquardt para método de Newton</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Modificación Levenberg-Marquardt para método de Newton</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>Considerar <span class="math inline">\(x^{(k+1)} = x^{(k)} - t_k \left(Hf(x^{(k)}) + \mu I\right)^{-1}\nabla f(x^{(k)})\)</span>, donde <span class="math inline">\(\mu &gt; 0\)</span> es lo suficientemente grande como para que <span class="math inline">\(B^{(k)} = Hf(x^{(k)}) + \mu\)</span> sea definida positiva.</p>
-<p><strong>Obs:</strong> si <span class="math inline">\(\mu\)</span> es demasiado grande, <span class="math inline">\(d^{(k)}\)</span> tiende a estar en la dirección de <span class="math inline">\(-\nabla f(x^{(k)})\)</span>, pues</p>
-<p><span class="math display">\[
-(Hf(x^{(k)}) + \mu I)^{-1}\nabla f(x^{(k)})
-\approx
-\frac{1}{\mu}\nabla f(x^{(k)}).
-\]</span></p>
-<p>En cambio, si <span class="math inline">\(\mu\)</span> es pequeño, <span class="math inline">\(d^{(k)}\)</span> se parece más a la dirección de descenso del Método de Newton.</p>
-<p>Con la modificación de L-M, se obtiene un método que utiliza las ventajas del Método del Gradiente y del Método de Newton.</p>
-<ul>
-<li><p>cerca del mínimo <span class="math inline">\(\approx Hf(x)\)</span> definida positiva <span class="math inline">\(\approx \mu = 0\)</span> o <span class="math inline">\(\mu\)</span> pequeño <span class="math inline">\(\approx\)</span> Método de Newton <span class="math inline">\(\approx\)</span> convergencia rápida cerca de un mínimo.</p></li>
-<li><p>lejos del mínimo <span class="math inline">\(\approx Hf(x)\)</span> no definida positiva <span class="math inline">\(\approx \mu\)</span> grande <span class="math inline">\(\approx\)</span> Método del gradiente <span class="math inline">\(\approx\)</span> más velocidad de descenso.</p></li>
-</ul>
-<p><strong>Obs:</strong> Si <span class="math inline">\(\lambda_1,\ldots,\lambda_n\)</span> son los autovalores de <span class="math inline">\(Hf(x)\)</span>, entonces <span class="math inline">\(\lambda_1 + \mu,\ldots,\lambda_n + \mu\)</span> son los autovalores de <span class="math inline">\(B = Hf(x) + \mu I\)</span>, y <span class="math inline">\(B\)</span> tiene los mismos autovectores que <span class="math inline">\(Hf(x)\)</span>.</p>
-<p>Sea <span class="math inline">\(v_i\)</span> autovector de <span class="math inline">\(Hf(x)\)</span>:</p>
-<p><span class="math display">\[
-\begin{aligned}
-Bv_i
-&amp;= (Hf(x)+\mu I)v_i \\
-&amp;= Hf(x)v_i + \mu Iv_i \\
-&amp;= \lambda_i v_i + \mu v_i \\
-&amp;= (\lambda_i+\mu)v_i
-\end{aligned}
-\]</span></p>
-<p>Entonces, en caso de que <span class="math inline">\(Hf(x)\)</span> no sea definida positiva, se puede utilizar su mínimo autovalor como una aproximación a <span class="math inline">\(-\mu\)</span>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Dada<span class="op">:</span> f, grad_f, x_0, K_{max}, eps<span class="op">&gt;</span><span class="fl">0</span>, gamma<span class="op">&gt;</span><span class="fl">0</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="op">||</span><span class="fu">grad_f</span>(x_k)<span class="op">||&gt;</span>eps and k<span class="op">&lt;</span>K_{max}</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="fu">Hf</span>(x_k)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> min{lambda<span class="op">:</span> lambda autovalor de B}</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> mu <span class="op">&lt;=</span> <span class="fl">0</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        B <span class="op">=</span> B <span class="op">+</span> (<span class="op">-</span>mu<span class="op">+</span>gamma)I</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    d_k <span class="op">=</span> <span class="fu">-B\grad_f</span>(x_k)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    Determinar t_k</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    x_{k<span class="op">+</span><span class="fl">1</span>} <span class="op">=</span> x_k <span class="op">+</span> t_k<span class="op">*</span>d_k</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> k <span class="op">+</span> <span class="fl">1</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
+<section id="perfil-de-desempeño" class="level1 unnumbered">
+<h1 class="unnumbered">Perfil de Desempeño</h1>
+<p>Diseñado por Dolan y Moré en 2001, es una herramienta que se emplea para comparar la aptitud de distintos algoritmos para resolver un conjunto de problemas.</p>
+<p>Dados un conjunto de problemas <span class="math inline">\(P\)</span> y un conjunto de algoritmos <span class="math inline">\(S\)</span>, definimos como <span class="math inline">\(c_{s,p}\)</span> el costo de resolver el problema <span class="math inline">\(p\in P\)</span> con el algoritmo <span class="math inline">\(s\in S\)</span>. Si el algoritmo <span class="math inline">\(s\)</span> no puede resolver el problema <span class="math inline">\(p\)</span>, se define <span class="math inline">\(c_{s,p}=c_{max}\)</span> con <span class="math inline">\(c_{max}\in\mathbb{R}\)</span> un valor adecuado de manera tal que: <span class="math display">\[c_{s,p}=c_{max} \Leftrightarrow \text{el algoritmo $s$ no resuelve el problema $p$}\]</span> Se asume que al menos un algoritmo resuelve el problema <span class="math inline">\(p\)</span>. Se define la tasa de desempeño relativa como: <span class="math display">\[r_{s,p}= \frac{c_{s,p}}{\min \{c_{j,p}\colon j\in S\}}\]</span></p>
+<p>Observar que <span class="math inline">\(r_{s,p}\geq 1\)</span> y, si <span class="math inline">\(r_{s,p}=1\)</span>, entonces el algoritmo <span class="math inline">\(s\)</span> es uno de los mejores (o el mejor) para resolver el problema <span class="math inline">\(p\)</span>. Mientras mayor sea <span class="math inline">\(r_{s,p}\)</span>, peor es el desempeño de <span class="math inline">\(s\)</span> al resolver <span class="math inline">\(p\)</span>. Finalmente, se define la función de desempeño <span class="math inline">\(\rho_s:[1,\infty)\to[0,1]\)</span> para el algoritmo <span class="math inline">\(s\)</span> como: <span class="math display">\[\rho_s(\tau) = \frac{\#\{p\in P\colon r_{s,p}\leq \tau\}}{\# P}\]</span></p>
+<p>Así, <span class="math inline">\(\rho_s(\tau)\)</span> es el porcentaje de problemas que el algoritmo <span class="math inline">\(s\)</span> resuelve con hasta <span class="math inline">\(\tau\)</span> veces el costo del algoritmo más eficiente. Por ejemplo, <span class="math inline">\(\rho_s(1)\)</span> es la proporción de problemas que el algoritmo <span class="math inline">\(s\)</span> resuelve con el menor costo.</p>
+<p>Si se define: <span class="math display">\[r_{max} = \underset{s\in S, p\in P\;\colon\; c_{s,p}&lt;M}{\max} r_{s,p}\]</span><br>
+se tiene que <span class="math inline">\(\rho_s(r_{max})\)</span> es el número de problemas resueltos por el algoritmo <span class="math inline">\(s\)</span>. El valor <span class="math inline">\(\rho_s(1)\)</span> se denomina la eficiencia de <span class="math inline">\(s\)</span> y <span class="math inline">\(\rho_s(r_{max})\)</span> es su robustez.</p>
+<p>La definición del costo está relacionada a la medida de desempeño que se quiera estudiar. Se puede considerar como <strong>costo</strong> al <strong>tiempo que necesita el algoritmo para resolver el problema, a la cantidad de iteraciones, a la cantidad de veces que es evaluada la función objetivo</strong>, etc.</p>
+<p>Para analizar el perfil de desempeño se suelen graficar en conjunto las funciones <span class="math inline">\(\rho_s\)</span> para cada <span class="math inline">\(s\in S\)</span>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -753,32 +563,7 @@ Note
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./labo_5.html" class="pagination-link" aria-label="Perfil de Desempeño">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Perfil de Desempeño</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./labo_7.html" class="pagination-link" aria-label="Optimización con restricciones: Método de penalidad">
-        <span class="nav-page-text">Optimización con restricciones: Método de penalidad</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>2026, Mauricio Mendiluce</p>
-</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    </div>
-    <div class="nav-footer-right">
-      &nbsp;
-    </div>
-  </div>
-</footer>
 
 
 
