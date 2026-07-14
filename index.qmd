@@ -1,6 +1,7 @@
 ---
 title: "Mauricio Mendiluce"
 image: image.jpg
+toc: true
 about:
   template: trestles
   links: 
