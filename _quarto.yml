@@ -12,7 +12,7 @@ website:
 format:
   html:
     theme:
-      light: [cosmo, brand]
+      light: [flatly, brand]
       dark: [darkly, brand]
     css: styles.css
     toc: false
