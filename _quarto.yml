@@ -8,12 +8,6 @@ website:
     right:
       - text: "Home"
         href: index.qmd
-      - text: "Publications"
-        href: publications.qmd
-      - text: "Conferences and talks"
-        href: talks.qmd
-      - text: "Teaching"
-        href: teaching.qmd
 
 format:
   html:
