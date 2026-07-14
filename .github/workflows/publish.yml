@@ -17,9 +17,20 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Render and Publish
-        uses: quarto-dev/quarto-actions/publish@v2
+      - name: Render main site
+        run: quarto render
+
+      - name: Render Optimización (book)
+        run: quarto render optimizacion
+
+      - name: Merge book output into site output
+        run: |
+          mkdir -p _site/optimizacion
+          cp -r optimizacion/_book/. _site/optimizacion/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          force_orphan: true
