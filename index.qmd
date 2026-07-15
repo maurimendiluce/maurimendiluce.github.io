@@ -28,10 +28,9 @@ IMAS - CONICET
 
 ### Articles 
 
-- María Gabriela Armentano and Mauricio Mendiluce, *A posteriori error analisys Navier-Stokes equations with
-non smooth data*, preprint (2026).
+- María Gabriela Armentano and Mauricio Mendiluce, *A posteriori error analisys Navier-Stokes equations with non smooth data*, preprint (2026). [arXiv](https://arxiv.org/pdf/2607.13014v1)
 - María Gabriela Armentano, Andrea Ceretani, Mauricio Mendiluce and Sebastián Oriolo, *Indoor radon concentration: Mathematical model and numerical simulation.*, MACI. Vol 10,588-591 (2025). [Link](https://drive.google.com/file/d/1h_ZoH3l_Xi-8XBHfPOwQ7ZQ3m3hv6xFX/view)
-- María Gabriela Armentano and Mauricio Mendiluce, *Finite element approximation of the stationary Navier-Stokes problem with non-smooth data*, preprint (2025). [arXiv](https://arxiv.org/abs/2509.16461)
+- María Gabriela Armentano and Mauricio Mendiluce, *Finite element approximation of the stationary Navier-Stokes problem with non-smooth data*, preprint (2025). [arXiv](https://arxiv.org/pdf/2509.16461)
 
 ### Thesis
 
