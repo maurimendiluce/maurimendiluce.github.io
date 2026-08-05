@@ -1,0 +1,57 @@
+@def title = "Mauricio Mendiluce"
+
+~~~
+<div class="profile">
+  <img src="/assets/image.jpg" alt="Mauricio Mendiluce" class="profile-pic">
+  <div class="profile-links">
+    <a href="mailto:mmendiluce@dm.uba.ar" title="Email"><i class="fa-solid fa-envelope"></i> Email</a>
+    <a href="https://github.com/maurimendiluce" title="GitHub"><i class="fa-brands fa-github"></i> GitHub</a>
+    <a href="https://www.linkedin.com/in/mauricio-mendiluce-7437ba1a9/" title="LinkedIn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+    <a href="https://scholar.google.com/citations?hl=es&user=yQQRQsUAAAAJ" title="Google Scholar"><i class="fa-brands fa-google-scholar"></i> Google Scholar</a>
+  </div>
+</div>
+~~~
+
+# Mauricio Mendiluce
+
+**PhD Student**
+
+Departamento de Matemática, Facultad de Ciencias Exactas y Naturales, Universidad de Buenos Aires
+
+IMAS - CONICET
+
+[Research Group on Numerical Methods for PDEs and Related Analysis Topics](https://mate.dm.uba.ar/~numerical_analysis/index.html)
+
+## Publications
+
+### Articles
+
+- María Gabriela Armentano and Mauricio Mendiluce, *A posteriori error analysis Navier-Stokes equations with non smooth data*, preprint (2026). [arXiv](https://arxiv.org/pdf/2607.13014v1)
+- María Gabriela Armentano, Andrea Ceretani, Mauricio Mendiluce and Sebastián Oriolo, *Indoor radon concentration: Mathematical model and numerical simulation.*, MACI. Vol 10, 588-591 (2025). [Link](https://drive.google.com/file/d/1h_ZoH3l_Xi-8XBHfPOwQ7ZQ3m3hv6xFX/view)
+- María Gabriela Armentano and Mauricio Mendiluce, *Finite element approximation of the stationary Navier-Stokes problem with non-smooth data*, preprint (2025). [arXiv](https://arxiv.org/pdf/2509.16461)
+
+### Thesis
+
+- [Un método de estabilización para la ecuación de Maxwell](https://web.dm.uba.ar/files/tesis_lic/2019/mendiluce.pdf) (2019)
+
+## Conferences and Talks
+
+### Conferences
+
+- Finite element approximation of the stationary Navier–Stokes problem with non-smooth Dirichlet data: a priori and a posteriori error analysis. Mixed Local and Nonlocal Operators: Analytical, Numerical and Probabilistic Perspectives, Buenos Aires, Argentina. Nov 2025.
+- Indoor radon concentration: Mathematical model and numerical simulation. X Congress of Applied, Computational and Industrial Mathematics, Córdoba, Argentina. May 2025.
+- Aproximación por elementos finitos del problema de Navier-Stokes estacionario con dato de borde no suave. UMA 2024 - Annual reunion of the Argentine Mathematical Union, Catamarca, Argentina. September 2024.
+- BAIL 2022 - Boundary and Interior Layers, Universidad de Buenos Aires, Argentina. December 2022 (assistance only)
+
+### Seminars
+
+- Aproximación por elementos finitos del problema de Navier-Stokes con dato de Dirichlet no suave. Universidad de Buenos Aires, July 2024
+
+## Teaching
+
+As [Jefe de Trabajos Prácticos](https://web.dm.uba.ar/index.php/institucional/integrantes/JTP?view=teacher&id=207:mendiluce-mauricio) in the Department of Mathematics of the FCEyN (University of Buenos Aires).
+
+- Análisis Numérico (2023, 2024, 2025, 2026)
+- [Optimización](/optimizacion/) (2022, 2024, 2025, 2026)
+- Algebra Lineal Computacional (2023)
+- Matemática II (2022)
