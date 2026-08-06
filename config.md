@@ -2,6 +2,8 @@
 @def author = "Mauricio Mendiluce"
 @def prepath = ""
 @def hasmenu = false
+@def menu_optimizacion = false
+@def menu_numerico = false
 
 <!--
 Add here global page variables to use throughout your website.

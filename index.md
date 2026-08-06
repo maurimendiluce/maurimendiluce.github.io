@@ -51,7 +51,7 @@ IMAS - CONICET
 
 As [Jefe de Trabajos Prácticos](https://web.dm.uba.ar/index.php/institucional/integrantes/JTP?view=teacher&id=207:mendiluce-mauricio) in the Department of Mathematics of the FCEyN (University of Buenos Aires).
 
-- Análisis Numérico (2023, 2024, 2025, 2026)
+- [Análisis Numérico](/numerico/) (2023, 2024, 2025, 2026)
 - [Optimización](/optimizacion/) (2022, 2024, 2025, 2026)
 - Algebra Lineal Computacional (2023)
 - Matemática II (2022)

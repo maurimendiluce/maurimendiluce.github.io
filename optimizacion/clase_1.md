@@ -1,5 +1,6 @@
 @def title = "Clase 1 — Optimización"
 @def hasmenu = true
+@def menu_optimizacion = true
 
 # Clase 1
 

@@ -1,5 +1,6 @@
 @def title = "Optimización"
 @def hasmenu = true
+@def menu_optimizacion = true
 
 ~~~
 <img src="/assets/optimizacion/cover.png" alt="Optimización" class="cover-img">

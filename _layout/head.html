@@ -18,11 +18,15 @@
   </nav>
 </header>
 -->
-<div class="franklin-content{{if hasmenu}} wide{{end}}">
 {{if hasmenu}}
 <div class="with-sidebar">
   <aside class="sidebar">
+    {{if menu_optimizacion}}
     {{ sidebar_optimizacion }}
+    {{end}}
+    {{if menu_numerico}}
+    {{ sidebar_numerico }}
+    {{end}}
   </aside>
   <div class="page-content">
 {{end}}

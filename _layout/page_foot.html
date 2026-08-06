@@ -1,1 +1,8 @@
 <!-- Optional: analytics scripts, etc. -->
+<script>
+  document.querySelectorAll('.sidebar-nav a').forEach(a => {
+    if (a.getAttribute('href') === window.location.pathname) {
+      a.classList.add('active');
+    }
+  });
+</script>

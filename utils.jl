@@ -36,3 +36,16 @@ function hfun_sidebar_optimizacion()
     """)
     return String(take!(io))
 end
+
+function hfun_sidebar_numerico()
+    io = IOBuffer()
+    write(io, """
+    <nav class="sidebar-nav">
+      <p class="sidebar-title">Análisis Numérico</p>
+      <ul>
+        <li><a href="/numerico/">Introducción</a></li>
+      </ul>
+    </nav>
+    """)
+    return String(take!(io))
+end
