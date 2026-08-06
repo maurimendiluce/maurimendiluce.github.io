@@ -10,4 +10,4 @@
 
 **¡Bienvenidos/as!**
 
-Esta página está dedicada a algunos recursos que usaremos en la materia Análisis Numérico. 
+Esta página está dedicada a algunos recursos que usaremos en la materia Análisis Numérico. Para mas informacion...
