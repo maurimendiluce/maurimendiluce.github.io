@@ -3,7 +3,7 @@
 @def menu_numerico = true
 
 ~~~
-<img src="/assets/numerico/cover.png" alt="Optimización" class="cover-img">
+<img src="/assets/numerico/cover.png" alt="AN" class="cover-img">
 ~~~
 
 ## Introducción
