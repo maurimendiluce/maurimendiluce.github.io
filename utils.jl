@@ -45,6 +45,10 @@ function hfun_sidebar_numerico()
       <ul>
         <li><a href="/numerico/">Introducción</a></li>
       </ul>
+      <p class="sidebar-section">Clases de Laboratorio</p>
+      <ul>
+        <li><a href="/numerico/clase_1/">Clase 1</a></li>
+      </ul>
     </nav>
     """)
     return String(take!(io))
