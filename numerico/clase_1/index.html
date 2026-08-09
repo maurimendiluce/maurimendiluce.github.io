@@ -1,1 +1,122 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <title>Clase 1 - AN</title> <meta name=description  content="Personal academic website of Mauricio Mendiluce"> <link rel=stylesheet  href="/css/basic.css"> <link rel=stylesheet  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> <link rel=icon  href="/assets/favicon.png"> <!-- <header> <nav> <a href="/">Home</a> <a href="/optimizacion/">Optimización</a> </nav> </header> --> <div class=with-sidebar > <aside class=sidebar > <nav class=sidebar-nav > <p class=sidebar-title >Análisis Numérico</p> <ul> <li><a href="/numerico/">Introducción</a> </ul> <p class=sidebar-section >Clases de Laboratorio</p> <ul> <li><a href="/numerico/clase_1/">Clase 1</a> </ul> </nav> </aside> <div class=page-content > <div class=franklin-content ><h1 id=clase_1 ><a href="#clase_1" class=header-anchor >Clase 1</a></h1> <p><em>&#40;Completá acá el contenido de la clase 1: teoría, ejercicios, diapositivas, etc.&#41;</em></p> <p><a href="/numerico/">← Volver</a></p> <script> document.querySelectorAll('.sidebar-nav a').forEach(a => { if (a.getAttribute('href') === window.location.pathname) { a.classList.add('active'); } }); </script></div> </div> </div> </div> <footer> <p>&copy; Mauricio Mendiluce. Built with <a href="https://franklinjl.org/">Franklin.jl</a>.</p> </footer>
+<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <title>Clase 1 - AN</title> <meta name=description  content="Personal academic website of Mauricio Mendiluce"> <link rel=stylesheet  href="/css/basic.css"> <link rel=stylesheet  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> <link rel=icon  href="/assets/favicon.png"> <link rel=stylesheet  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css"> <!-- <header> <nav> <a href="/">Home</a> <a href="/optimizacion/">Optimización</a> </nav> </header> --> <div class=with-sidebar > <aside class=sidebar > <nav class=sidebar-nav > <p class=sidebar-title >Análisis Numérico</p> <ul> <li><a href="/numerico/">Introducción</a> </ul> <details class=sidebar-group  open> <summary class=sidebar-section >Clases de Laboratorio</summary> <ul> <li><a href="/numerico/clase_1/">Clase 1</a> </ul> </details> </nav> </aside> <div class=page-content > <div class=franklin-content ><h1 id=clase_1 ><a href="#clase_1" class=header-anchor >Clase 1</a></h1> <h2 id="discretización_de_derivadas"><a href="#discretización_de_derivadas" class=header-anchor >Discretización de derivadas</a></h2> <p>Una forma natural de aproximar la derivada de una función \(u\) en un punto \(x\) es a partir de su definición como límite, reemplazando el límite por un cociente incremental con un paso \(h\) finito. Según qué puntos se usen, se obtienen distintas discretizaciones:</p> <ul> <li><p><strong>Diferencias hacia adelante &#40;forward&#41;:</strong> \(u'(x) \approx \frac{u(x+h)-u(x)}{h}\)</p> <li><p><strong>Diferencias hacia atrás &#40;backward&#41;:</strong> \(u'(x) \approx \frac{u(x)-u(x-h)}{h}\)</p> <li><p><strong>Diferencias centradas:</strong> \(u'(x) \approx \frac{u(x+h)-u(x-h)}{2h}\)</p> </ul> <p>Estas tres opciones se pueden implementar en una única función, seleccionando el método por un argumento:</p> <pre><code class=language-julia >function derivada&#40;u,x;method&#61;&quot;forward&quot;,h&#61;0.01&#41;
+    if method &#61;&#61; &quot;forward&quot;
+        return &#40;u&#40;x&#43;h&#41;-u&#40;x&#41;&#41;/h
+    elseif method &#61;&#61; &quot;backward&quot;
+        return &#40;u&#40;x&#41;-u&#40;x&#43;h&#41;&#41;/h
+    elseif method &#61;&#61; &quot;centradas&quot;
+        return &#40;u&#40;x&#43;h&#41;-u&#40;x-h&#41;&#41;/&#40;2h&#41;
+    end
+end
+
+function u&#40;x&#41;
+    return sin&#40;x&#41;
+end
+
+function ∇u&#40;x&#41;
+    return cos&#40;x&#41;
+end</code></pre> <p>Tomando \(u(x) = \sin(x)\), cuya derivada exacta es \(\cos(x)\), podemos comparar la aproximación numérica de \(u'(1)\) contra el valor exacto para distintos tamaños de paso \(h\), y así estimar el <strong>orden de convergencia</strong> de cada método: el exponente \(p\) tal que el error se comporta como \(\mathcal{O}(h^p)\).</p> <pre><code class=language-julia >function orden&#40;u,∇u,x;method&#61;&quot;forward&quot;&#41;
+    h&#61;&#91;0.1,0.01,0.001,0.0001&#93;
+    error &#61; zeros&#40;length&#40;h&#41;&#41;
+    for i&#61;1:length&#40;h&#41;
+        error&#91;i&#93;&#61;∇u&#40;x&#41;-derivada&#40;u,x,h&#61;h&#91;i&#93;,method&#61;method&#41;
+    end
+    println&#40;&quot;orden: &quot;,polyfit&#40;log.&#40;h&#41;,log.&#40;error&#41;,1&#41;&#91;1&#93;&#41;
+    plot&#40;log.&#40;h&#41;,log.&#40;error&#41;&#41;
+end</code></pre> <p><strong>Método forward:</strong></p> <pre><code class=language-julia >orden&#40;u,∇u,1&#41;</code></pre>
+<pre><code class=language-plaintext >orden: 1.0027318905612974</code></pre>
+
+<img src="/assets/numerico/clase_1/orden_forward.svg" alt="Orden de convergencia - diferencias forward" class=cover-img >
+
+<p>Como se ve, las diferencias forward &#40;y backward&#41; tienen <strong>orden 1</strong>: el error decrece linealmente con \(h\).</p>
+<p><strong>Método de diferencias centradas:</strong></p>
+<pre><code class=language-julia >orden&#40;u,∇u,1,method&#61;&quot;centradas&quot;&#41;</code></pre>
+<pre><code class=language-plaintext >orden: 1.9999453615526088</code></pre>
+
+<img src="/assets/numerico/clase_1/orden_centradas.svg" alt="Orden de convergencia - diferencias centradas" class=cover-img >
+
+<p>Las diferencias centradas, en cambio, alcanzan <strong>orden 2</strong>: para el mismo \(h\), el error es sensiblemente menor. Esto se debe a que el término de orden \(h\) en el desarrollo de Taylor se cancela al combinar \(u(x+h)\) y \(u(x-h)\) simétricamente.</p>
+<h2 id="problemas_de_valores_de_contorno_capa_límite"><a href="#problemas_de_valores_de_contorno_capa_límite" class=header-anchor >Problemas de valores de contorno: capa límite</a></h2>
+<p>Consideremos la ecuación</p>
+\[ \varepsilon u_{xx} - u_x = f, \qquad u(0) = \alpha, \quad u(1) = \beta. \]
+<p>Para el caso \(f(x) = 1\), la solución exacta está dada por</p>
+\[ u_\varepsilon(x) = \alpha + x + (\beta - \alpha - 1) \left( \frac{e^{x/\varepsilon}-1}{e^{1/\varepsilon}-1} \right). \]
+<blockquote>
+<p><strong>Nota:</strong> una ecuación de esta forma aparece, por ejemplo, al considerar el estado estacionario &#40;\(u_t = 0\)&#41; de un problema de convección-difusión \(u_t = \kappa u_{xx} + a u_x + \phi\), con difusividad \(\kappa > 0\) y convección \(a \in \mathbb{R}\). A la proporción \(Pe = a/\kappa\) se la conoce como <strong>número de Péclet</strong>, y se toma \(\varepsilon = 1/Pe\).</p>
+</blockquote>
+<pre><code class=language-julia >function u_ε&#40;x,ε;α&#61;1,β&#61;3&#41;
+    y&#61;α&#43;x&#43;&#40;β-α-1&#41;*&#40;&#40;ℯ^&#40;x/ε&#41;-1&#41;/&#40;ℯ^&#40;1/ε&#41;-1&#41;&#41;
+    return y
+end</code></pre>
+<p>Graficando la solución exacta para \(\alpha=1\), \(\beta=3\) a medida que \(\varepsilon \to 0\):</p>
+<pre><code class=language-julia >x&#61;0:0.01:1
+
+plot&#40;x,u_ε.&#40;x,0.3&#41;,label&#61;&quot;epsilon&#61;0.3&quot;&#41;
+plot&#33;&#40;x,u_ε.&#40;x,0.1&#41;,label&#61;&quot;epsilon&#61;0.1&quot;&#41;
+plot&#33;&#40;x,u_ε.&#40;x,0.05&#41;,label&#61;&quot;epsilon&#61;0.05&quot;&#41;
+plot&#33;&#40;x,u_ε.&#40;x,0.01&#41;,label&#61;&quot;epsilon&#61;0.01&quot;&#41;</code></pre>
+
+<img src="/assets/numerico/clase_1/capa_limite_epsilon.svg" alt="Solución exacta para distintos epsilon" class=cover-img >
+
+<p>A medida que \(\varepsilon\) disminuye, la solución desarrolla una transición cada vez más abrupta cerca del borde \(x=1\): es la <strong>capa límite</strong>, una región angosta donde la solución cambia muy rápido mientras que en el resto del dominio se mantiene casi constante.</p>
+<h3 id="resolución_numérica"><a href="#resolución_numérica" class=header-anchor >Resolución numérica</a></h3>
+<p>Discretizando con diferencias centradas tanto la derivada primera como la segunda, sobre una malla de tamaño \(h\), se obtiene un sistema lineal tridiagonal para los valores interiores de \(u\):</p>
+<pre><code class=language-julia >function capa_limite&#40;f,N;ε&#61;0.3,α&#61;1,β&#61;3&#41;
+
+    h&#61;1/N
+    x&#61;0:h:1
+    n&#61;length&#40;x&#41;
+    U&#61;zeros&#40;n&#41;
+    U&#91;1&#93;&#61;α
+    U&#91;n&#93;&#61;β
+    A1&#61;&#40;ε/h^2&#41;*Tridiagonal&#40;ones&#40;n-3&#41;,-2*ones&#40;n-2&#41;,ones&#40;n-3&#41;&#41;
+    A2&#61;&#40;1/2h&#41;*Tridiagonal&#40;-ones&#40;n-3&#41;,zeros&#40;n-2&#41;,ones&#40;n-3&#41;&#41;
+    F&#61;f.&#40;x&#41;&#91;2:n-1&#93;
+    F&#91;1&#93;&#61;F&#91;1&#93;-ε*α/h^2&#43;α/2h
+    F&#91;end&#93;&#61;F&#91;end&#93;-ε*β/h^2-β/2h
+
+    A&#61;A1-A2
+    sol&#61;A\F
+    U&#91;2:n-1&#93;&#61;sol
+    return U
+end
+
+function f&#40;x&#41;
+    return -1.0
+end</code></pre>
+<p>Comparando la solución numérica con la solución exacta para \(\varepsilon = 0.1\) y \(N=100\):</p>
+<pre><code class=language-julia >ε&#61;0.1
+N&#61;100
+x&#61;0:1/N:1
+U&#61;capa_limite&#40;f,N,ε&#61;ε&#41;
+plot&#40;x,U,label&#61;&quot;solucion numerica&quot;&#41;
+plot&#33;&#40;x,u_ε.&#40;x,ε&#41;,label&#61;&quot;solucion exacta&quot;&#41;</code></pre>
+
+<img src="/assets/numerico/clase_1/capa_limite_solucion.svg" alt="Solución numérica vs exacta" class=cover-img >
+
+<p>La aproximación numérica reproduce bien tanto la zona suave como la capa límite cerca de \(x=1\), siempre que la malla sea suficientemente fina en relación a \(\varepsilon\) &#40;si \(h \gg 2\varepsilon\), el esquema deja de resolver correctamente la capa límite y aparecen oscilaciones espurias&#41;.</p>
+<p><a href="/numerico/">← Volver</a></p>
+
+<script>
+  document.querySelectorAll('.sidebar-nav a').forEach(a => {
+    if (a.getAttribute('href') === window.location.pathname) {
+      a.classList.add('active');
+    }
+  });
+</script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '\\[', right: '\\]', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false}
+        ]
+    });"></script></div>
+  </div> 
+</div> 
+
+</div> 
+
+<footer>
+  <p>&copy; Mauricio Mendiluce. Built with <a href="https://franklinjl.org/">Franklin.jl</a>.</p>
+</footer>
