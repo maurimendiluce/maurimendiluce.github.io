@@ -38,6 +38,7 @@ IMAS - CONICET
 
 ### Conferences
 
+- Finite Element Approximation of the Stationary Navier–Stokes Problem with Non-Smooth Dirichlet Data. UMA 2026 - Annual reunion of the Argentine Mathematical Union, Mar del Plata, Argentina. September 2026.
 - Finite element approximation of the stationary Navier–Stokes problem with non-smooth Dirichlet data: a priori and a posteriori error analysis. Mixed Local and Nonlocal Operators: Analytical, Numerical and Probabilistic Perspectives, Buenos Aires, Argentina. Nov 2025.
 - Indoor radon concentration: Mathematical model and numerical simulation. X Congress of Applied, Computational and Industrial Mathematics, Córdoba, Argentina. May 2025.
 - Aproximación por elementos finitos del problema de Navier-Stokes estacionario con dato de borde no suave. UMA 2024 - Annual reunion of the Argentine Mathematical Union, Catamarca, Argentina. September 2024.
